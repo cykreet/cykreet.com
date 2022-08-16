@@ -2,7 +2,14 @@
 module.exports = {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ["Figtree"],
+			},
+			colors: {
+				background: "#020202",
+			},
+		},
 	},
 	plugins: [],
 };
