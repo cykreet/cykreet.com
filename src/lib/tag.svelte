@@ -1,3 +1,3 @@
-<div class="text-xs bg-[#131313] rounded p-1">
+<div class="text-xs bg-[#131313] rounded p-1 select-none">
   <slot />
 </div>

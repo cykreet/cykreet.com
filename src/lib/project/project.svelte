@@ -1,17 +1,28 @@
-<script lang="ts">
+<script lang="ts" type="module">
+  import { onMount } from 'svelte';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
   import type { Project } from './project';
 
   export let project: Project;
   let modalOpen: boolean;
+  let details: string = 'loading';
+
+  onMount(async () => {
+    // todo: some project names could be problematic
+    const importKey = `./markdown/${project.name.toLocaleLowerCase()}.md`;
+    const { html } = await import(/* @vite-ignore */ importKey);
+    details = html;
+  });
 </script>
 
 <Modal isOpen={modalOpen} onClose={() => (modalOpen = false)}>
   <div class="flex flex-col gap-2">
     <img
-      class="block object-cover max-h-64 rounded overflow-hidden min-w-full mx-auto"
+      class="block max-h-64 rounded overflow-hidden min-w-full mx-auto"
       src={`/images/projects/atlas.png`}
+      width="358px"
+      height="255px"
       alt=""
     />
     <div>
@@ -27,7 +38,7 @@
       </span>
       <p class="text-sm">{project.summary}</p>
       <hr class="m-0 my-2 border-t border-[#414141]/30" />
-      <p>{project.description}</p>
+      {@html details}
     </div>
   </div>
 </Modal>
@@ -37,10 +48,10 @@
 >
   <!-- svelte-ignore a11y-missing-attribute -->
   <div class="block object-cover max-h-56 rounded overflow-hidden max-w-full">
-    <img class="transition saturate-50" src={`/images/projects/atlas.png`} />
+    <img width="210px" height="224px" class="transition saturate-50" src={`/images/projects/atlas.png`} />
   </div>
   <div>
-    <span class="flex flex-row align-middle gap-2">
+    <span class="flex flex-row gap-2">
       <h3>{project.name}</h3>
       {#if project.tags}
         <div class="flex flex-row gap-2 my-auto">

@@ -1,6 +1,5 @@
 <script lang="ts">
   import Project from './project.svelte';
-  // import ProjectOverlay from './project-overlay.svelte';
   import type { Project as ProjectType } from './project';
 
   export let projects: ProjectType[];

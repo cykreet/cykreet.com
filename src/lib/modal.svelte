@@ -16,8 +16,18 @@
   }
 </script>
 
+<svelte:head>
+  {#if isOpen}
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
+  {/if}
+</svelte:head>
+
 {#if isOpen}
-  <div class="flex items-center justify-center fixed inset-0 z-50 bg-background/75">
+  <div class="flex items-center justify-center modal-open fixed inset-0 z-50 bg-background/75">
     <div use:onClickOutside class="relative rounded-lg p-3 border border-[#414141] bg-background max-w-sm">
       <slot />
     </div>

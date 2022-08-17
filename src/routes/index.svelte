@@ -1,8 +1,8 @@
 <script lang="ts">
   import Category from '$lib/category.svelte';
-  import ProjectList from '$lib/project/project-list.svelte';
   import type { Project } from '$lib/project/project';
   import { ProjectTag } from '$lib/project/project';
+  import ProjectList from '$lib/project/project-list.svelte';
 
   const projects: Project[] = [
     {
@@ -22,6 +22,10 @@
     },
   ];
 </script>
+
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
 
 <section class="items-center container mx-auto text-center mt-32">
   <div class="rounded-md p-8 space-y-2">

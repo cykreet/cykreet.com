@@ -4,23 +4,28 @@
 
 body {
   @apply bg-background;
+  overflow-y: overlay;
   color: #c3c5c9;
 }
 
+a {
+  color: #e83e27;
+}
+
 a:hover {
-  color: white;
+  color: #fc7968;
 }
 
 h1,
 h2,
 h3 {
   @apply text-white;
+  @apply tracking-tight;
 }
 
 h1 {
   @apply font-black;
   @apply text-8xl;
-  @apply tracking-tight;
 }
 
 h2 {

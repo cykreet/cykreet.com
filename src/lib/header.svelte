@@ -5,3 +5,13 @@
     </nav>
   </div>
 </header>
+
+<style>
+  a {
+    color: #c3c5c9;
+  }
+
+  a:hover {
+    color: white;
+  }
+</style>
