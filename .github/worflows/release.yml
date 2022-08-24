@@ -1,0 +1,19 @@
+name: Build and Deploy Website
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Bun
+        uses: antongolub/action-setup-bun@v1
+      - name: Install Dependencies
+        run: bun install
+      - name: Run Deploy Script
+        run: ./deploy.sh
+        shell: bash
