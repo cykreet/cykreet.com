@@ -15,5 +15,5 @@ jobs:
       - name: Install Dependencies
         run: bun install
       - name: Run Deploy Script
-        run: ./deploy.sh
+        run: ./.github/scripts/backend_decrypt.sh
         shell: bash
