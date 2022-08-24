@@ -7,16 +7,26 @@
   const projects: Project[] = [
     {
       name: 'Atlas',
+      links: {
+        website: 'https://atlas.bot',
+        github: 'https://github.com/sylodev',
+      },
       tags: [ProjectTag.Typescript, ProjectTag.React],
-      summary: 'Atlas offers some of the most advanced customisation features on the Discord platform.',
+      summary: 'Multi-purpose Discord bot with some pretty crazy customisation options.',
     },
     {
       name: 'kas',
+      links: {
+        github: 'https://github.com/sylodev/kas',
+      },
       tags: [ProjectTag.Typescript],
-      summary: 'Flexible caching solution - with robust, built-in TypeScript types and redis support.',
+      summary: 'Typescript caching solution, flexible with redis support.',
     },
     {
       name: 'alligator',
+      links: {
+        github: 'https://github.com/cykreet/alligator',
+      },
       tags: [ProjectTag.Rust],
       summary: 'Discord webhook proxy server, batches sequential requests to minimise ratelimits.',
     },
@@ -27,14 +37,16 @@
   <title>Home</title>
 </svelte:head>
 
-<section class="items-center container mx-auto text-center mt-32">
-  <div class="rounded-md p-8 space-y-2">
-    <h1>title</h1>
-    <p>this is where you die</p>
+<section class="container items-center mx-auto mt-32 text-center">
+  <div class="p-8 space-y-2 rounded-md">
+    <p>i'll finish this later</p>
   </div>
 </section>
 <section>
-  <Category title="Projects" description="Some neat things I'm doing on the side.">
+  <Category
+    title="Projects"
+    description="Some neat things I'm doing on the side. All images are generated with DALL-E."
+  >
     <ProjectList {projects} />
   </Category>
 </section>

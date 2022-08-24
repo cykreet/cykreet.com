@@ -1,9 +1,9 @@
 <script>
-  import Header from '$lib/header.svelte';
+  // import Header from '$lib/header.svelte';
   import '../app.css';
 </script>
 
-<Header />
+<!-- <Header /> -->
 
 <main>
   <slot />

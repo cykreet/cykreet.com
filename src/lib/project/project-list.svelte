@@ -10,3 +10,6 @@
     <Project {project} />
   {/each}
 </div>
+<div class="min-w-full text-center">
+  <a href="https://github.com/cykreet">view more on github</a>
+</div>

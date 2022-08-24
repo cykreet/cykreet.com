@@ -2,31 +2,42 @@
   import { onMount } from 'svelte';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
+  import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
   import type { Project } from './project';
 
   export let project: Project;
   let modalOpen: boolean;
-  let details: string = 'loading';
+  let details: string = "i haven't thought of anything to put here yet.";
 
+  const projectId = project.name.toLocaleLowerCase();
   onMount(async () => {
-    // todo: some project names could be problematic
-    const importKey = `./markdown/${project.name.toLocaleLowerCase()}.md`;
+    const importKey = `./markdown/${projectId}.md`;
     const { html } = await import(/* @vite-ignore */ importKey);
     details = html;
   });
+
+  const onOpen = () => {
+    modalOpen = true;
+    document.body.style.overflowY = 'hidden';
+  };
+
+  const onClose = () => {
+    modalOpen = false;
+    document.body.style.overflowY = 'overlay';
+  };
 </script>
 
-<Modal isOpen={modalOpen} onClose={() => (modalOpen = false)}>
+<Modal isOpen={modalOpen} {onClose}>
   <div class="flex flex-col gap-2">
     <img
-      class="block max-h-64 rounded overflow-hidden min-w-full mx-auto"
-      src={`/images/projects/atlas.png`}
+      class="block min-w-full mx-auto overflow-hidden rounded max-h-64"
+      src={`/images/projects/${projectId}.png`}
       width="358px"
       height="255px"
       alt=""
     />
     <div>
-      <span class="flex flex-row align-middle gap-2">
+      <span class="flex flex-row gap-2 align-middle">
         <h3>{project.name}</h3>
         {#if project.tags}
           <div class="flex flex-row gap-2 my-auto">
@@ -38,17 +49,33 @@
       </span>
       <p class="text-sm">{project.summary}</p>
       <hr class="m-0 my-2 border-t border-[#414141]/30" />
+      {#if project.links}
+        {@const source = project.links.github}
+        {@const website = project.links.website}
+        <div class="flex flex-row gap-2 my-2 text-white">
+          {#if source}
+            <a href={source} title="GitHub">
+              <GithubIcon class="w-4 h-4" />
+            </a>
+          {/if}
+          {#if website}
+            <a href={website} title="Website">
+              <GlobeIcon class="w-4 h-4" />
+            </a>
+          {/if}
+        </div>
+      {/if}
       {@html details}
     </div>
   </div>
 </Modal>
 <div
-  on:click={() => (modalOpen = true)}
-  class="flex flex-col gap-2 bg-background/75 transition delay-[10ms] cursor-pointer card hover:bg-background/50 overflow-hidden rounded-lg p-3 max-w-xs"
+  on:click={onOpen}
+  class="flex flex-col gap-2 transition delay-[10ms] cursor-pointer card hover:bg-[#131313]/50 overflow-hidden rounded-lg p-3 max-w-xs"
 >
   <!-- svelte-ignore a11y-missing-attribute -->
-  <div class="block object-cover max-h-56 rounded overflow-hidden max-w-full">
-    <img width="210px" height="224px" class="transition saturate-50" src={`/images/projects/atlas.png`} />
+  <div class="block object-cover max-w-full overflow-hidden rounded max-h-56">
+    <img class="transition saturate-50" src={`/images/projects/${projectId}.png`} />
   </div>
   <div>
     <span class="flex flex-row gap-2">
