@@ -15,4 +15,4 @@ jobs:
       - name: Install Dependencies
         run: bun install
       - name: Run Deploy Script
-        run: ./.github/scripts/deploy.sh
+        run: ./deploy.sh
