@@ -7,7 +7,7 @@ set -e
 bun run build
 
 # navigate into the build output directory
-cd dist
+cd build
 
 echo 'cykreet.com' > CNAME
 
