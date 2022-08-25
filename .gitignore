@@ -4,6 +4,8 @@ jspm_packages/
 
 .svelte-kit
 
+build/
+
 # TypeScript cache
 *.tsbuildinfo
 
