@@ -16,4 +16,3 @@ jobs:
         run: bun install
       - name: Run Deploy Script
         run: ./.github/scripts/deploy.sh
-        shell: bash
