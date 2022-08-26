@@ -2,7 +2,13 @@
 node_modules/
 jspm_packages/
 
-.svelte-kit
+# for some reason vite doesn't wanna build without having the
+# .svelte-kit/tsconfig.json file in the workspace, using the
+# "prepare" script to "sync" the workspace before building, after
+# installing dependencies doesn't work either since the command
+# can't be found - might be a me issue, might be a bun issue idk.
+.svelte-kit/*
+!.svelte-kit/tsconfig.json
 
 build/
 
