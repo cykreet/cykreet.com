@@ -2,8 +2,6 @@
 node_modules/
 jspm_packages/
 
-.svelte-kit/
-
 build/
 
 # TypeScript cache
