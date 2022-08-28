@@ -14,5 +14,21 @@ jobs:
         uses: antongolub/action-setup-bun@v1
       - name: Install Dependencies
         run: bun install
-      - name: Run Deploy Script
-        run: ./deploy.sh
+      - name: Build
+        run: bun run build
+      - name: Configure Git
+        run: |
+          git config --global user.name "Deploy Script"
+          git config --global user.email "<>"
+      - name: Deploy
+        run: |
+          cd build
+          echo 'cykreet.com' > CNAME
+
+          git init
+          git checkout -b main
+          git add -A
+          git commit -m 'deploy'
+
+          git push -f origin gh-pages
+          cd -
