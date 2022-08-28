@@ -11,8 +11,8 @@ cd build
 
 echo 'cykreet.com' > CNAME
 
-git config user.name "Deploy Script"
-git config user.email "<>"
+git config --global user.name "Deploy Script"
+git config --global user.email "<>"
 
 git init
 git checkout -b main
