@@ -1,4 +1,4 @@
-<script lang="ts" type="module">
+<script lang="ts">
   import { onMount } from 'svelte';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
