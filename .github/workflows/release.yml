@@ -11,26 +11,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
       - name: Setup Bun
         uses: antongolub/action-setup-bun@v1
       - name: Install Dependencies
         run: bun install
       - name: Build
         run: bun run build
-      - name: Configure Git
-        run: |
-          git config --global user.name "Deploy Script"
-          git config --global user.email "<>"
       - name: Deploy
         run: |
           cd build
           echo 'cykreet.com' > CNAME
+
+          git config --global user.name "Deploy Script"
+          git config --global user.email "<>"
 
           git init
           git checkout -b main
           git add -A
           git commit -m 'deploy'
 
-          git push -f git@github.com:cykreet/cykreet.com.git main:gh-pages
+          git push -f https://github.com/cykreet/cykreet.com.git HEAD:gh-pages
           cd -
