@@ -1,13 +1,13 @@
-import adapter from 'svelte-adapter-bun';
-import preprocess from 'svelte-preprocess';
+import staticAdapter from 'svelte-adapter-bun';
+import sveltePreprocess from 'svelte-preprocess';
 
 /** @type {import("@sveltejs/kit").Config} */
 export default {
-  preprocess: preprocess({
+  preprocess: sveltePreprocess({
     postcss: true,
   }),
   kit: {
-    adapter: adapter({
+    adapter: staticAdapter({
       pages: 'build',
       assets: 'build',
       fallback: null,
