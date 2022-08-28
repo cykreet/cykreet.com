@@ -31,5 +31,5 @@ jobs:
           git add -A
           git commit -m 'deploy'
 
-          git push https://github.com/cykreet/cykreet.com.git HEAD:gh-pages
+          git push git@github.com:cykreet/cykreet.com.git HEAD:gh-pages
           cd -
