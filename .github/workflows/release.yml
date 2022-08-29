@@ -16,19 +16,19 @@ jobs:
         run: bun install
       - name: Build
         run: bun run build
-      - name: Create CNAME
+      - name: Push Changes
         run: |
-          echo 'cykreet.com' > build/CNAME
-          git add .
-      - name: Commit Changes
-        run: |
+          cd build
+          echo 'cykreet.com' > CNAME          
+
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+          git init
+          git add .
           git commit -m "deploy" -a
-      - name: Push Changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: build
-          branch: gh-pages
-          force: true
+
+          remote_repo = "https://cykreet:$GITHUB_TOKEN@github.com/cykreet/cykreet.com.git"
+          git push "${remote_repo}" HEAD:gh-pages --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
