@@ -21,8 +21,8 @@ jobs:
           cd build
           echo 'cykreet.com' > CNAME
 
-          git config --global user.name "Deploy Script"
-          git config --global user.email "<>"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
           git init
           git checkout -b main
