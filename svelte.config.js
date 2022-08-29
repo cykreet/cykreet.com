@@ -1,4 +1,4 @@
-import staticAdapter from 'svelte-adapter-bun';
+import staticAdapter from '@sveltejs/adapter-static';
 import sveltePreprocess from 'svelte-preprocess';
 
 const production = process.env.BUN_ENV === 'production';
