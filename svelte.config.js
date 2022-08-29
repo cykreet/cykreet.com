@@ -13,6 +13,9 @@ export default {
       fallback: null,
       precompress: false,
     }),
+    paths: {
+      base: '/cykreet.com',
+    },
     prerender: {
       default: true,
     },
