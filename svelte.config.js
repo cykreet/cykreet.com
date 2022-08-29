@@ -1,23 +1,16 @@
 import staticAdapter from '@sveltejs/adapter-static';
 import sveltePreprocess from 'svelte-preprocess';
-import tailwind from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
-
-const production = process.env.BUN_ENV === 'production';
 
 /** @type {import("@sveltejs/kit").Config} */
 export default {
   preprocess: sveltePreprocess({
-    postcss: {
-      plugins: [tailwind, autoprefixer],
-    },
+    postcss: true,
   }),
   kit: {
     adapter: staticAdapter({
       pages: 'build',
       assets: 'build',
       fallback: null,
-      precompress: false,
     }),
     prerender: {
       default: true,
