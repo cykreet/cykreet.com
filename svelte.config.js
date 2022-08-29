@@ -1,6 +1,8 @@
 import staticAdapter from 'svelte-adapter-bun';
 import sveltePreprocess from 'svelte-preprocess';
 
+const production = process.env.BUN_ENV === 'production';
+
 /** @type {import("@sveltejs/kit").Config} */
 export default {
   preprocess: sveltePreprocess({
@@ -14,7 +16,7 @@ export default {
       precompress: false,
     }),
     paths: {
-      base: '/cykreet.com',
+      base: production ? '/cykreet.com' : undefined,
     },
     prerender: {
       default: true,
