@@ -18,7 +18,7 @@ jobs:
         run: bun run build
       - name: Create CNAME
         run: |
-          echo 'cykreet.com' > bui;d/CNAME
+          echo 'cykreet.com' > build/CNAME
           git add .
       - name: Commit Changes
         run: |
