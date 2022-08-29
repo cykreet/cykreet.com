@@ -27,8 +27,6 @@ jobs:
 
           git add .
           git commit -m "deploy" -a
-
-          remote_repo = "https://cykreet:$GITHUB_TOKEN@github.com/cykreet/cykreet.com.git"
-          git push "${remote_repo}" HEAD:gh-pages --verbose
+          git push "https://cykreet:$GITHUB_TOKEN@github.com/cykreet/cykreet.com.git" HEAD:gh-pages --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
