@@ -27,6 +27,6 @@ jobs:
 
           git add .
           git commit -m "deploy" -a
-          git push "https://cykreet:$GITHUB_TOKEN@github.com/cykreet/cykreet.com.git" HEAD:gh-pages --verbose
+          git push "https://cykreet:$GITHUB_TOKEN@github.com/cykreet/cykreet.com.git" HEAD:gh-pages --verbose --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
