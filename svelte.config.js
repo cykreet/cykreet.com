@@ -19,9 +19,6 @@ export default {
       fallback: null,
       precompress: false,
     }),
-    paths: {
-      base: production ? '/cykreet.com' : undefined,
-    },
     prerender: {
       default: true,
     },

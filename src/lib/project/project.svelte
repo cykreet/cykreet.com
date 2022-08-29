@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { base } from '$app/paths';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
   import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
@@ -32,7 +31,7 @@
   <div class="flex flex-col gap-2">
     <img
       class="block min-w-full mx-auto overflow-hidden rounded max-h-64"
-      src={`${base}/images/projects/${projectId}.png`}
+      src={`/images/projects/${projectId}.png`}
       width="358px"
       height="255px"
       alt=""
@@ -76,7 +75,7 @@
 >
   <!-- svelte-ignore a11y-missing-attribute -->
   <div class="block object-cover max-w-full overflow-hidden rounded max-h-56">
-    <img class="transition saturate-50" src={`${base}/images/projects/${projectId}.png`} />
+    <img class="transition saturate-50" src={`/images/projects/${projectId}.png`} />
   </div>
   <div>
     <span class="flex flex-row gap-2">
