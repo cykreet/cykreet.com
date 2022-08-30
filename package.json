@@ -9,6 +9,7 @@
     "autoprefixer": "^10.4.8",
     "bun-types": "latest",
     "postcss": "^8.4.16",
+    "postcss-load-config": "^4.0.1",
     "prettier": "^2.7.1",
     "svelte": "^3.49.0",
     "svelte-adapter-bun": "^0.3.1",
