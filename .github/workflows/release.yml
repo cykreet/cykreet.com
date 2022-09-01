@@ -10,12 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Bun
-        uses: antongolub/action-setup-bun@v1
+      - name: Setup Node
+        uses: actions/setup-node@v3
       - name: Install Dependencies
-        run: bun install
+        run: npm install
       - name: Build
-        run: bun run build
+        run: npm run build
         env:
           BUN_ENV: production
       - name: Push Changes
