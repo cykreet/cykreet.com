@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: 'pnpm'
-      - name: Get pnpm store directory
+      - name: Get PNPM store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"

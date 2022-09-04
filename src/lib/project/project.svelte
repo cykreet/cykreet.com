@@ -1,19 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
-  import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
   import type { Project } from './project';
 
   export let project: Project;
   let modalOpen: boolean;
-  let details: string = "i haven't thought of anything to put here yet.";
+  let Markdown: any;
 
   const projectId = project.name.toLocaleLowerCase();
   onMount(async () => {
     const importKey = `./markdown/${projectId}.md`;
-    const { html } = await import(/* @vite-ignore */ importKey);
-    details = html;
+    const imported = await import(/* @vite-ignore */ importKey);
+    Markdown = imported.default;
   });
 
   const onOpen = () => {
@@ -65,7 +65,7 @@
           {/if}
         </div>
       {/if}
-      {@html details}
+      <svelte:component this={Markdown} />
     </div>
   </div>
 </Modal>

@@ -3,7 +3,7 @@ import sveltePreprocess from 'svelte-preprocess';
 
 /** @type {import("@sveltejs/kit").Config} */
 export default {
-  extensions: ['.svelte'],
+  extensions: ['.svelte', '.md'],
   preprocess: sveltePreprocess({
     postcss: true,
   }),
