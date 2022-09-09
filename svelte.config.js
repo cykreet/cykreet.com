@@ -8,10 +8,6 @@ export default {
     postcss: true,
   }),
   kit: {
-    adapter: staticAdapter({
-      pages: 'build',
-      assets: 'build',
-      fallback: null,
-    }),
+    adapter: staticAdapter(),
   },
 };

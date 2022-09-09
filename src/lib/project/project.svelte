@@ -1,20 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
-  import type { Project } from './project';
+  import { Markdown, type Project } from './project';
 
   export let project: Project;
   let modalOpen: boolean;
-  let Markdown: any;
-
   const projectId = project.name.toLocaleLowerCase();
-  onMount(async () => {
-    const importKey = `./markdown/${projectId}.md`;
-    const imported = await import(/* @vite-ignore */ importKey);
-    Markdown = imported.default;
-  });
+  let Details: any = Markdown[projectId];
 
   const onOpen = () => {
     modalOpen = true;
@@ -30,7 +23,7 @@
 <Modal isOpen={modalOpen} {onClose}>
   <div class="flex flex-col gap-2">
     <img
-      class="block min-w-full mx-auto overflow-hidden rounded max-h-64"
+      class="block min-w-full mx-auto overflow-hidden rounded min-h-64 max-h-64"
       src={`/images/projects/${projectId}.png`}
       width="358px"
       height="255px"
@@ -65,7 +58,7 @@
           {/if}
         </div>
       {/if}
-      <svelte:component this={Markdown} />
+      <svelte:component this={Details} />
     </div>
   </div>
 </Modal>
@@ -74,7 +67,7 @@
   class="flex flex-col gap-2 transition delay-[10ms] cursor-pointer card hover:bg-[#131313]/50 overflow-hidden rounded-lg p-3 max-w-xs"
 >
   <!-- svelte-ignore a11y-missing-attribute -->
-  <div class="block object-cover max-w-full overflow-hidden rounded max-h-56">
+  <div class="block object-cover max-w-full overflow-hidden rounded min-h-56 max-h-56">
     <img class="transition saturate-50" src={`/images/projects/${projectId}.png`} />
   </div>
   <div>
