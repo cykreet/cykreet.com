@@ -3,17 +3,20 @@
 @tailwind utilities;
 
 body {
+  @apply text-grey-100;
   @apply bg-background;
   overflow-y: overlay;
-  color: #c3c5c9;
 }
 
 a {
-  color: #e83e27;
+  @apply text-white;
+  @apply underline;
+  @apply decoration-salmon;
+  @apply decoration-2;
 }
 
 a:hover {
-  color: #fc7968;
+  @apply decoration-[3px];
 }
 
 h1,
@@ -25,7 +28,7 @@ h3 {
 
 h1 {
   @apply font-black;
-  @apply text-8xl;
+  @apply text-6xl;
 }
 
 h2 {

@@ -4,10 +4,22 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Figtree'],
+        sans: ['Inter'],
       },
       colors: {
-        background: '#020202',
+        background: '#0A0B0F',
+        grey: {
+          DEFAULT: '#202123',
+          100: '#9D9EA1',
+          300: '#202123',
+          700: '#101217',
+          900: '#0B0B0F',
+        },
+        salmon: {
+          DEFAULT: '#E83E27',
+          50: '#FC7968',
+          100: '#E83E27',
+        },
       },
     },
   },

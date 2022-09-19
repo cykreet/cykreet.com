@@ -2,7 +2,7 @@ import AlligatorMarkdown from '$markdown/alligator.md';
 import AtlasMarkdown from '$markdown/atlas.md';
 import KasMarkdown from '$markdown/kas.md';
 
-export enum Markdown {
+export enum ProjectMarkdown {
   'alligator' = AlligatorMarkdown,
   'atlas' = AtlasMarkdown,
   'kas' = KasMarkdown,

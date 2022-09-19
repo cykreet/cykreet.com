@@ -1,14 +1,15 @@
 <script lang="ts">
   import { GithubIcon, GlobeIcon } from 'svelte-feather-icons';
+  import IconLink from '../icon-link.svelte';
   import Modal from '../modal.svelte';
   import Tag from '../tag.svelte';
-  import { Markdown, type Project } from './project';
+  import { ProjectMarkdown, type Project } from './project';
 
   export let project: Project;
-  let modalOpen: boolean;
   const projectId = project.name.toLocaleLowerCase();
-  let Details: any = Markdown[projectId];
+  let Details: any = ProjectMarkdown[projectId];
 
+  let modalOpen: boolean;
   const onOpen = () => {
     modalOpen = true;
     document.body.style.overflowY = 'hidden';
@@ -22,55 +23,53 @@
 
 <Modal isOpen={modalOpen} {onClose}>
   <div class="flex flex-col gap-2">
-    <img
-      class="block min-w-full mx-auto overflow-hidden rounded min-h-64 max-h-64"
-      src={`/images/projects/${projectId}.png`}
-      width="358px"
-      height="255px"
-      alt=""
-    />
-    <div>
-      <span class="flex flex-row gap-2 align-middle">
-        <h3>{project.name}</h3>
-        {#if project.tags}
-          <div class="flex flex-row gap-2 my-auto">
-            {#each project.tags as tag}
-              <Tag>{tag}</Tag>
-            {/each}
-          </div>
-        {/if}
-      </span>
-      <p class="text-sm">{project.summary}</p>
-      <hr class="m-0 my-2 border-t border-[#414141]/30" />
+    <div class="flex flex-col gap-1 p-3 pb-1 bg-background border-b border-b-grey">
+      <img
+        class="block min-w-full mx-auto overflow-hidden rounded min-h-64 max-h-64"
+        src={`/images/projects/${projectId}.png`}
+        width="358px"
+        height="255px"
+        alt=""
+      />
+      <div>
+        <span class="flex flex-row gap-2 align-middle">
+          <h3>{project.name}</h3>
+          {#if project.tags}
+            <div class="flex flex-row gap-2 my-auto">
+              {#each project.tags as tag}
+                <Tag>{tag}</Tag>
+              {/each}
+            </div>
+          {/if}
+        </span>
+        <p class="text-sm">{project.summary}</p>
+      </div>
       {#if project.links}
         {@const source = project.links.github}
         {@const website = project.links.website}
-        <div class="flex flex-row gap-2 my-2 text-white">
+        <div class="flex flex-row gap-2 my-2">
           {#if source}
-            <a href={source} title="GitHub">
-              <GithubIcon class="w-4 h-4" />
-            </a>
+            <IconLink icon={GithubIcon} href={source} title="GitHub" />
           {/if}
           {#if website}
-            <a href={website} title="Website">
-              <GlobeIcon class="w-4 h-4" />
-            </a>
+            <IconLink icon={GlobeIcon} href={website} title="Website" />
           {/if}
         </div>
       {/if}
+    </div>
+    <div class="p-3 pt-0">
       <svelte:component this={Details} />
     </div>
   </div>
 </Modal>
 <div
   on:click={onOpen}
-  class="flex flex-col gap-2 transition delay-[10ms] cursor-pointer card hover:bg-[#131313]/50 overflow-hidden rounded-lg p-3 max-w-xs"
+  class="flex flex-col gap-2 transition delay-[10ms] cursor-pointer card bg-grey-700 hover:bg-grey-700/80 overflow-hidden rounded-lg max-w-xs"
 >
-  <!-- svelte-ignore a11y-missing-attribute -->
-  <div class="block object-cover max-w-full overflow-hidden rounded min-h-56 max-h-56">
-    <img class="transition saturate-50" src={`/images/projects/${projectId}.png`} />
-  </div>
-  <div>
+  <div class="flex flex-col gap-1 p-3 pb-1 bg-background border-b border-b-grey">
+    <div class="block object-cover max-w-full overflow-hidden rounded min-h-56 max-h-56">
+      <img class="transition saturate-50" src={`/images/projects/${projectId}.png`} alt="" />
+    </div>
     <span class="flex flex-row gap-2">
       <h3>{project.name}</h3>
       {#if project.tags}
@@ -81,21 +80,19 @@
         </div>
       {/if}
     </span>
-    <hr class="m-0 my-1 border-t border-[#414141]/30" />
-    <p>{project.summary}</p>
   </div>
+  <p class="text-sm p-3 pt-0">{project.summary}</p>
 </div>
 
 <style>
   .card {
     @apply border;
-    @apply border-background;
+    @apply border-grey;
   }
 
   .card:hover {
-    @apply border-t-[#414141];
-    @apply border-x-[#414141]/40;
-    @apply border-b-[#414141]/40;
+    @apply border-x-grey/60;
+    @apply border-b-grey/60;
   }
 
   .card:hover img {
