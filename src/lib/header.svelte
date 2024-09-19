@@ -1,19 +1,16 @@
-<header
-  class="sticky container bg-black md:bg-opacity-50 md:backdrop-saturate-150 shadow-[inset_0_-1px_0_0_hsla(0,0%,100%,0.1)] md:backdrop-blur-sm mx-auto top-0 min-w-full z-20"
->
-  <div class="flex container mx-auto items-center h-12">
-    <nav class="mx-auto space-x-2 text-center">
-      <a href="/">Home</a>
-    </nav>
-  </div>
-</header>
+<script>
+	import Button from "./button.svelte";
+	import Link from "./link.svelte";
+</script>
 
-<style>
-  a {
-    color: #c3c5c9;
-  }
-
-  a:hover {
-    color: white;
-  }
-</style>
+<div class="flex flex-row justify-between mx-10 my-5 mb-0">
+	<div class="font-bold text-white my-auto">
+		<Link href="/">cykreet.com</Link>
+	</div>
+	<div class="flex flex-row space-x-10 my-auto *:my-auto *:no-underline text-grey-100 text-sm">
+		<Link href="/projects">Projects</Link>
+		<Link href="/contact">
+			<Button>Contact</Button>
+		</Link>
+	</div>
+</div>

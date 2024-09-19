@@ -1,12 +1,11 @@
 import staticAdapter from '@sveltejs/adapter-static';
-import sveltePreprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+// import sveltePreprocess from 'svelte-preprocess';
 
 /** @type {import("@sveltejs/kit").Config} */
 export default {
-  extensions: ['.svelte', '.md'],
-  preprocess: sveltePreprocess({
-    postcss: true,
-  }),
+  extensions: ['.svelte'],
+  preprocess: [vitePreprocess()],
   kit: {
     adapter: staticAdapter(),
   },
