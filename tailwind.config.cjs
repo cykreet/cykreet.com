@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter'],
+        sans: ['Space Grotesk'],
       },
       colors: {
-        background: '#0A0B0F',
+        background: '#090a0a',
         grey: {
           DEFAULT: '#202123',
           100: '#9D9EA1',
