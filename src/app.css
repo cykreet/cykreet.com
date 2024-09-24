@@ -5,6 +5,7 @@
 body {
   @apply text-grey-100;
   @apply bg-background;
+  /* @apply font-medium; */
   font-optical-sizing: auto;
   overflow-y: overlay;
   overflow-x: hidden
@@ -44,9 +45,7 @@ body {
 }
 
 a {
-  @apply underline;
-  @apply decoration-salmon;
-  @apply decoration-2;
+  @apply no-underline;
 }
 
 a:hover {
@@ -73,6 +72,12 @@ h2 {
 h3 {
   @apply text-2xl;
   @apply font-medium;
+}
+
+.card-gradient {
+  background: -moz-linear-gradient(0deg, rgba(60,60,63,0) 84%, rgb(36, 12, 12) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(60,60,63,0) 84%, rgb(36, 12, 12) 100%);
+  background: linear-gradient(0deg, rgba(60,60,63,0) 84%, rgb(36, 12, 12) 100%);
 }
 
 .container {

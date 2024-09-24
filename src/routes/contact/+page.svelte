@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { pageContext } from "../store";
+	import { pageContext } from "../../store";
 
 	onMount(() => {
-		pageContext.set("a little about me");
+		pageContext.set("let's get in touch");
 	});
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Contact</title>
 </svelte:head>
-
-<div></div>
