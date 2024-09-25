@@ -1,6 +1,6 @@
 export enum EventType {
-	PushEvent = 'PushEvent',
-	WatchEvent = 'WatchEvent',
+	PushEvent = "PushEvent",
+	WatchEvent = "WatchEvent",
 }
 
 export interface GithubEvent {
@@ -46,4 +46,8 @@ export interface Commit {
 	url: string;
 	message: string;
 	date: string;
+	author: {
+		name: string;
+		avatar_url: string;
+	};
 }

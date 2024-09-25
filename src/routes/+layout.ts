@@ -1,12 +1,13 @@
-import type { LayoutData } from "./$types";
+import type { GithubEvent } from "../lib/event-list/event";
+import type { LayoutLoad } from "./$types";
 
-export const load: LayoutData = async ({}) => {
-	const response = await fetch('https://api.github.com/users/cykreet/events');
-	const eventData = await response.json();
+export const load = (async ({ fetch }) => {
+	const events = fetch('https://api.github.com/users/cykreet/events')
+		.then((response) => response.json() as Promise<GithubEvent[]>);
 
 	return {
-		events: eventData,
+		events: await events,
 	}
-}
+}) satisfies LayoutLoad;
 
 export const prerender = true;

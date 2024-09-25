@@ -59,7 +59,7 @@
 		</div>
 		<Card className="flex flex-col md:w-4/12 space-y-6 card-gradient">
 			<span class="inline-flex items-center space-x-4 font-medium">
-				<Pill className="w-full">
+				<Pill className="w-full min-w-20">
 					<span class="relative inline-flex h-2 w-2 m-0 mr-2">
 						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-salmon opacity-75"></span>
 						<span class="relative inline-flex rounded-full h-2 w-2 bg-salmon"></span>

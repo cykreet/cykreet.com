@@ -2,13 +2,13 @@
 	import clsx from "clsx";
 	import { SunIcon } from "svelte-feather-icons";
 
-	export let className: string = "";
+	export let className = "";
 	const hour = new Date().getHours();
 	const iconClass = clsx("text-salmon fill-salmon", className);
 </script>
 
-{#if hour >= 6 && hour < 17}
-	<SunIcon class="animate-[spin_3s_linear_infinite] {iconClass}" />
+{#if hour >= 6 && hour < 18}
+	<SunIcon class="animate-[spin_5s_linear_infinite] {iconClass}" />
 {:else}
 	<div class="orbit-container">
 		<div class="earth"></div>
