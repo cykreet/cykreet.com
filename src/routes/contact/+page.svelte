@@ -2,9 +2,7 @@
 	import { onMount } from "svelte";
 	import { pageContext } from "../../store";
 
-	onMount(() => {
-		pageContext.set("let's get in touch");
-	});
+	onMount(() => pageContext.set("let's get in touch"));
 </script>
 
 <svelte:head>

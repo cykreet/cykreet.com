@@ -16,7 +16,7 @@
 	<div class="flex flex-col py-2 space-y-1 hover:translate-x-2 transition duration-75">
 		<div class="inline-flex justify-between">
 			<span>
-				{#if parsedCommit.conventional}
+				{#if parsedCommit.type}
 					<Pill className="!px-2 !p-0 {parsedCommit.classes}">{parsedCommit.type}</Pill>
 				{/if}
 				{#if parsedCommit.scope}

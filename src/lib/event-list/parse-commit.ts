@@ -1,5 +1,4 @@
 export interface ParsedCommit {
-	conventional?: boolean;
 	type?: string;
 	scope?: string;
 	classes?: string;
@@ -32,7 +31,6 @@ export function parseCommit(message: string): ParsedCommit {
 	return {
 		type: prettyType[0],
 		classes: prettyType[1],
-		conventional: true,
 		scope: scope?.slice(0, -1),
 		description: description.join(":").trim(),
 	};
