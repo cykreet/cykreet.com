@@ -9,4 +9,6 @@
 	<title>Home</title>
 </svelte:head>
 
-<div></div>
+<div>
+	<h2>this is epic</h2>
+</div>

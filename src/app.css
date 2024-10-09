@@ -102,3 +102,37 @@ h3 {
 		max-width: 768px;
 	}
 }
+
+.animate-top {
+	animation-duration: 0.55s;
+	animation-delay: 0.5s;
+	animation-name: animate-top;
+	animation-fill-mode: backwards;
+}
+
+@keyframes animate-top {
+	0% {
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade {
+	animation-duration: 0.5s;
+	animation-name: animate-fade;
+	animation-delay: 0.5s;
+	animation-fill-mode: backwards;
+}
+
+@keyframes animate-fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

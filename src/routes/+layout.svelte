@@ -43,7 +43,7 @@
 		<Header />
 		<div class="mt-4 flex flex-col md:flex-row w-full space-x-5 h-[90vh]">
 			<div class="md:w-8/12 space-y-5 flex flex-col">
-				<Card className={homeCardClasses}>
+				<Card cardClassName={homeCardClasses}>
 					<div class="max-w-lg space-y-4">
 						<h1 class="text-inherit text-salmon">
 							<span>welome to my</span>
@@ -56,13 +56,13 @@
 					</div>
 				</Card>
 				<div class="flex flex-row space-x-5 h-1/2">
-					<Card className="w-full" hoverEffects>
+					<Card cardClassName="w-full" cardTitle="Recent Activity" hoverEffects>
 						<EventList events={data.events} />
 					</Card>
-					<Card className="w-full" hoverEffects>box two</Card>
+					<Card cardClassName="w-full" cardTitle="Card Dos" hoverEffects>box two</Card>
 				</div>
 			</div>
-			<Card className="flex flex-col md:w-4/12 space-y-6 card-gradient">
+			<Card cardClassName="md:w-4/12" className="flex flex-col space-y-6 card-gradient">
 				<span class="animate-top inline-flex items-center space-x-4 font-medium">
 					{#if backPath && (pageLocation.match(/\//gi) || []).length > 1}
 						<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -91,39 +91,3 @@
 		</div>
 	</div>
 </main>
-
-<style>
-	.animate-top {
-		animation-duration: 0.55s;
-		animation-delay: 0.5s;
-		animation-name: animate-top;
-		animation-fill-mode: backwards;
-	}
-
-	@keyframes animate-top {
-		0% {
-			opacity: 0;
-			transform: translateY(-50%);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.animate-fade {
-		animation-duration: 0.5s;
-		animation-name: animate-fade;
-		animation-delay: 0.5s;
-		animation-fill-mode: backwards;
-	}
-
-	@keyframes animate-fade {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
-</style>

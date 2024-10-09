@@ -1,11 +1,15 @@
 <script lang="ts">
 	import clsx from "clsx";
 
+	export let cardClassName = "";
 	export let className = "";
+	export let cardTitle = "";
 	export let hoverEffects = false;
 	let cardElement: HTMLElement;
+	let hasScrolled = false;
 
-	const cardClasses = clsx("card-background border-2 p-5 rounded-md relative shadow-sm", hoverEffects && "hoverCard", className);
+	const cardClasses = clsx("card-background border-2 rounded-md overflow-hidden relative shadow-sm", hoverEffects && "hoverCard", cardClassName);
+	const classNames = clsx("p-5 overflow-y-auto max-h-full", className);
 	const mouseMove = (event: MouseEvent) => {
 		if (!hoverEffects) return;
 		const x = event.clientX - cardElement.getBoundingClientRect().left;
@@ -13,12 +17,27 @@
 		cardElement.style.setProperty("--x", x.toString());
 		cardElement.style.setProperty("--y", y.toString());
 	};
+
+	const elementScroll = (event: UIEvent) => {
+		if (event.target == null) return;
+		const element = event.target as Element;
+		hasScrolled = element.scrollTop > 0;
+	};
 </script>
 
 <svelte:window on:mousemove={mouseMove} />
 
 <div bind:this={cardElement} class={cardClasses}>
-	<slot />
+	{#if cardTitle}
+		<span class="px-5 text-sm text-grey-200 font-medium select-none">{cardTitle}</span>
+		<hr class="border-[1.5px]" />
+	{/if}
+	{#if hasScrolled}
+		<div class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-40% h-full pointer-events-none z-40" />
+	{/if}
+	<div on:scroll={elementScroll} class={classNames}>
+		<slot />
+	</div>
 </div>
 
 <style>

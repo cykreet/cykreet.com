@@ -7,6 +7,6 @@
 	const target = external ? "_blank" : "_self";
 </script>
 
-<a class="cursor-pointer hover:text-white {className}" {target} {href} {title}>
+<a class="cursor-pointer {className}" {target} {href} {title}>
 	<slot />
 </a>
