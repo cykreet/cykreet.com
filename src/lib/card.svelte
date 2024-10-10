@@ -7,13 +7,18 @@
 	export let hoverEffects = false;
 	let cardElement: HTMLElement;
 	let hasScrolled = false;
+	let hoveringTop = false;
 
-	const cardClasses = clsx("card-background border-2 rounded-md overflow-hidden relative shadow-sm", hoverEffects && "hoverCard", cardClassName);
+	const cardClasses = clsx("card-background border-2 rounded-md relative shadow-sm", hoverEffects && "hoverCard", cardClassName);
 	const classNames = clsx("p-5 overflow-y-auto max-h-full", className);
 	const mouseMove = (event: MouseEvent) => {
 		if (!hoverEffects) return;
 		const x = event.clientX - cardElement.getBoundingClientRect().left;
 		const y = event.clientY - cardElement.getBoundingClientRect().top;
+		const withinBoundary = x > 0 && x < cardElement.offsetWidth && y > 0 && y < cardElement.offsetHeight;
+		if (withinBoundary) hoveringTop = event.clientY < cardElement.getBoundingClientRect().top + 100;
+		else hoveringTop = false;
+
 		cardElement.style.setProperty("--x", x.toString());
 		cardElement.style.setProperty("--y", y.toString());
 	};
@@ -28,15 +33,17 @@
 <svelte:window on:mousemove={mouseMove} />
 
 <div bind:this={cardElement} class={cardClasses}>
-	{#if cardTitle}
-		<span class="px-5 text-sm text-grey-200 font-medium select-none">{cardTitle}</span>
-		<hr class="border-[1.5px]" />
-	{/if}
-	{#if hasScrolled}
-		<div class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-40% h-full pointer-events-none z-40" />
-	{/if}
-	<div on:scroll={elementScroll} class={classNames}>
-		<slot />
+	<div class="overflow-hidden max-h-full flex flex-col">
+		{#if cardTitle}
+			<span class="px-5 text-sm text-grey-200 font-medium select-none z-20">{cardTitle}</span>
+			<hr class="border-[1.5px] z-20" />
+		{/if}
+		{#if hasScrolled && hoveringTop == false}
+			<div class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-40% h-full pointer-events-none z-10" />
+		{/if}
+		<div on:scroll={elementScroll} class={classNames}>
+			<slot />
+		</div>
 	</div>
 </div>
 

@@ -62,7 +62,7 @@
 					<Card cardClassName="w-full" cardTitle="Card Dos" hoverEffects>box two</Card>
 				</div>
 			</div>
-			<Card cardClassName="md:w-4/12" className="flex flex-col space-y-6 card-gradient">
+			<Card cardClassName="md:w-4/12 card-gradient" className="flex flex-col space-y-6" hoverEffects>
 				<span class="animate-top inline-flex items-center space-x-4 font-medium">
 					{#if backPath && (pageLocation.match(/\//gi) || []).length > 1}
 						<!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -84,7 +84,7 @@
 						<span>[{hours}:{minutes}:{seconds}]</span>
 					</span>
 				</span>
-				<div class="animate-fade overflow-y-auto h-full">
+				<div class="animate-fade h-full">
 					<slot />
 				</div>
 			</Card>

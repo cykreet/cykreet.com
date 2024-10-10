@@ -6,7 +6,8 @@ export const _projects: Project[] = [
 	{
 		name: "alligator",
 		publishedDate: new Date("2022-06-17"),
-		description: "Discord webhook proxy server, batches sequential requests to minimise ratelimits.",
+		description:
+			"Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. Discord webhook proxy server, batches sequential requests to minimise ratelimits. ",
 	},
 	{
 		name: "cykreet.com",

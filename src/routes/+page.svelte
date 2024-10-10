@@ -9,6 +9,6 @@
 	<title>Home</title>
 </svelte:head>
 
-<div>
+<div class="flex flex-col">
 	<h2>this is epic</h2>
 </div>
