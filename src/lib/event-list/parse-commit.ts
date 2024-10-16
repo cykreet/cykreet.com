@@ -1,4 +1,4 @@
-export interface ParsedCommit {
+export interface ConvetionalCommit {
 	type?: string;
 	scope?: string;
 	classes?: string;
@@ -21,7 +21,7 @@ const commitTypes: CommitType[] = [
 	["chore", ["Chores", "!text-gray-500 !border-gray-500"]],
 ];
 
-export function parseCommit(message: string): ParsedCommit {
+export function parseConventionalCommit(message: string): ConvetionalCommit {
 	const [header] = message.split("\n");
 	if (!header?.includes(":")) return { description: message };
 

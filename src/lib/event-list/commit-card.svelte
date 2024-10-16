@@ -3,16 +3,16 @@
 	import Link from "../link.svelte";
 	import type { Commit } from "./event";
 	import Pill from "../pill.svelte";
-	import { parseCommit } from "./parse-commit";
+	import { parseConventionalCommit } from "./parse-commit";
 
 	export let commit: Commit;
 
 	const repoName = commit.repo.split("/")[1];
 	const prettyTime = prettyMs(new Date().getTime() - new Date(commit.date).getTime(), { compact: true, verbose: true });
-	const parsedCommit = parseCommit(commit.message);
+	const parsedCommit = parseConventionalCommit(commit.message);
 </script>
 
-<Link href={commit.url} external>
+<Link href={commit.url}>
 	<div class="flex flex-col py-2 space-y-1 hover:translate-x-2 transition duration-75">
 		<div class="inline-flex justify-between">
 			<span>

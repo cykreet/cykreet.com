@@ -6,12 +6,12 @@
 	import clsx from "clsx";
 	import { onMount } from "svelte";
 	import "../app.css";
+	import { goto, preloadData } from "$app/navigation";
 	import { ArrowLeftIcon } from "svelte-feather-icons";
 	import EventList from "../lib/event-list/event-list.svelte";
 	import TimeIcon from "../lib/time-icon.svelte";
 	import { pageContext } from "../store";
 	import type { LayoutData } from "./$types";
-	import { goto, preloadData } from "$app/navigation";
 
 	export let data: LayoutData;
 
@@ -33,7 +33,7 @@
 
 	onMount(() => {
 		const timeInterval = setInterval(() => (currentTime = new Date()), 1000);
-		backPath = document.referrer.split(location.origin)[1]!;
+		backPath = document.referrer.split(location.origin)[1]! ?? pageLocation.split("/").slice(0, -1).join("/");
 		return () => clearInterval(timeInterval);
 	});
 </script>
@@ -64,7 +64,7 @@
 			</div>
 			<Card cardClassName="md:w-4/12 card-gradient" className="flex flex-col space-y-6" hoverEffects>
 				<span class="animate-top inline-flex items-center space-x-4 font-medium">
-					{#if backPath && (pageLocation.match(/\//gi) || []).length > 1}
+					{#if (pageLocation.match(/\//gi) || []).length > 1 && backPath}
 						<!-- svelte-ignore a11y-no-static-element-interactions -->
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<!-- svelte-ignore a11y-mouse-events-have-key-events -->

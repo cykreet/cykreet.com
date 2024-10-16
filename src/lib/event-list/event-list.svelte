@@ -3,10 +3,12 @@
 	import CommitCard from "./commit-card.svelte";
 
 	export let events: GithubEvent[];
-	const commits = events
+	const parsedCommits = events
 		.filter((event) => event.type === EventType.PushEvent)
 		.flatMap((event) => {
 			const { commits } = event.payload;
+			// will i regret not filtering these and risking a few fuck, shits or cums
+			// slipping through the cracks, perhaps
 			return commits.map(
 				(commit) =>
 					({
@@ -24,7 +26,7 @@
 </script>
 
 <div class="flex flex-col space-y-1 overflow-y-auto h-full pr-2">
-	{#each commits as commit}
+	{#each parsedCommits as commit}
 		<CommitCard {commit} />
 		<hr class="mt-2 m-0 border-grey-300" />
 	{/each}
