@@ -10,29 +10,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2.2.2
+      - uses: oven-sh/setup-bun@v2
         with:
-          version: 7.5.2
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          cache: 'pnpm'
-      - name: Get PNPM store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-      - uses: actions/cache@v3
-        name: Setup PNPM cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: latest
       - name: Install Dependencies
-        run: pnpm install
+        run: bun install
       - name: Build
-        run: pnpm build
+        run: bun run build
         env:
           BUN_ENV: production
       - name: Push Changes
