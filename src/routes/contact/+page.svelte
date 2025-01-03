@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { pageContext } from "../../store";
 	import { TwitterIcon } from "svelte-feather-icons";
 	import Link from "../../lib/link.svelte";
+	import { pageContext } from "../../store";
 	// import Input from "../../lib/input/input.svelte";
 
-	onMount(() => pageContext.set("let's get in touch"));
+	pageContext.set("let's get in touch");
 </script>
 
 <svelte:head>

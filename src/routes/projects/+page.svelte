@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { onMount } from "svelte";
 	import { GithubIcon, MoreHorizontalIcon, TriangleIcon } from "svelte-feather-icons";
 	import Link from "../../lib/link.svelte";
 	import ProjectCard from "../../lib/project/project-card.svelte";
 	import { pageContext } from "../../store";
-	import { _projects } from "./[name]/+page";
+	import { _projects } from "./+page";
 
+	pageContext.set("what i've been working on");
 	const monthYearProjects = _projects.reduce((acc: { [key: string]: typeof _projects }, current) => {
 		const date = new Date(current.publishedDate);
 		const monthYear = date.toLocaleString("en-uk", { month: "long", year: "numeric" });
@@ -13,8 +13,6 @@
 		acc[monthYear].push(current);
 		return acc;
 	}, {});
-
-	onMount(() => pageContext.set("what i've been working on"));
 </script>
 
 <div class="flex flex-col">
