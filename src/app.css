@@ -103,36 +103,58 @@ h3 {
 	}
 }
 
-.animate-top {
-	animation-duration: 0.55s;
-	animation-delay: 0.5s;
-	animation-name: animate-top;
-	animation-fill-mode: backwards;
+@keyframes slide-from-left {
+	from {
+		transform: translateX(-30px);
+	}
 }
 
-@keyframes animate-top {
-	0% {
-		opacity: 0;
-		transform: translateY(-50%);
+@keyframes slide-to-right {
+	to {
+		transform: translateX(30px);
 	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
+}
+
+@keyframes slide-from-bottom {
+	from {
+		transform: translateY(30px);
+	}
+}
+
+@keyframes slide-to-top {
+	to {
+		transform: translateY(-30px);
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-out {
+	to {
+		opacity: 0;
 	}
 }
 
 .animate-fade {
 	animation-duration: 0.5s;
-	animation-name: animate-fade;
+	animation-name: fade-in;
 	animation-delay: 0.5s;
 	animation-fill-mode: backwards;
 }
 
-@keyframes animate-fade {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+.name-body {
+	view-transition-name: body;
+}
+
+::view-transition-old(body) {
+	animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right, 600ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(body) {
+	animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) 300ms both slide-from-left, 200ms cubic-bezier(0, 0, 0.2, 1) 300ms both
+		fade-in;
 }
