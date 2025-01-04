@@ -28,6 +28,8 @@
 <div class="flex flex-col space-y-1 overflow-y-auto h-full pr-2">
 	{#each parsedCommits as commit}
 		<CommitCard {commit} />
-		<hr class="mt-2 m-0 border-grey-300" />
+		{#if parsedCommits.indexOf(commit) + 1 !== parsedCommits.length}
+			<hr class="mt-2 m-0 border-grey-300" />
+		{/if}
 	{/each}
 </div>

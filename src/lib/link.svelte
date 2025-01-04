@@ -12,16 +12,14 @@
 </script>
 
 {#if external === false}
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 	<a
 		{href}
 		class={classNames}
 		on:mouseover={async () => await preloadData(href)}
+		on:focus={async () => await preloadData(href)}
 		on:click={(event) => {
-			goto(href);
 			event.preventDefault();
+			goto(href);
 		}}
 	>
 		<slot />
