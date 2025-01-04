@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { GithubIcon, MoreHorizontalIcon, TriangleIcon } from "svelte-feather-icons";
+	import { CircleIcon, GithubIcon, MoreHorizontalIcon } from "svelte-feather-icons";
 	import Link from "../../lib/link.svelte";
 	import ProjectCard from "../../lib/project/project-card.svelte";
 	import { pageContext } from "../../store";
 	import { _projects } from "./+page";
 
 	pageContext.set("what i've been working on");
-	const monthYearProjects = _projects.reduce((acc: { [key: string]: typeof _projects }, current) => {
-		const date = new Date(current.publishedDate);
-		const monthYear = date.toLocaleString("en-uk", { month: "long", year: "numeric" });
-		if (!acc[monthYear]) acc[monthYear] = [];
-		acc[monthYear].push(current);
-		return acc;
-	}, {});
+	const monthYearProjects = _projects
+		.sort((a, b) => b.publishedDate.getTime() - a.publishedDate.getTime())
+		.reduce((acc: { [key: string]: typeof _projects }, current) => {
+			const date = new Date(current.publishedDate);
+			const monthYear = date.toLocaleString("en-uk", { month: "long", year: "numeric" });
+			if (!acc[monthYear]) acc[monthYear] = [];
+			acc[monthYear].push(current);
+			return acc;
+		}, {});
 </script>
 
 <div class="flex flex-col">
 	{#each Array.from(Object.entries(monthYearProjects)) as [monthYear, projects]}
 		<div class="flex flex-row space-x-4 rounded-md">
 			<div class="flex flex-col items-center">
-				<TriangleIcon class="w-4 h-4 rounded-full fill-salmon mt-1 stroke-none" />
+				<CircleIcon class="w-4 h-4 rounded-full fill-grey-300 p-0.5 mt-1 stroke-none" />
 				<div class="w-0.5 h-full from-grey-300 bg-gradient-to-b to-transparent" />
 			</div>
 			<div class="cursor-pointer flex flex-col space-y-1 max-w-full overflow-x-hidden mb-4">
