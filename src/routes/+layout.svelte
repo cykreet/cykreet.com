@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onNavigate } from "$app/navigation";
 	import { page } from "$app/stores";
 	import Card from "$lib/card.svelte";
 	import Header from "$lib/header.svelte";
@@ -9,11 +10,9 @@
 	import "../app.css";
 	import ArtistsList from "../lib/artists-list/artists-list.svelte";
 	import EventList from "../lib/event-list/event-list.svelte";
-	import Link from "../lib/link.svelte";
 	import TimeIcon from "../lib/time-icon.svelte";
 	import { pageContext } from "../store";
 	import type { LayoutData } from "./$types";
-	import { onNavigate } from "$app/navigation";
 
 	export let data: LayoutData;
 
@@ -21,7 +20,6 @@
 	let pageLocation: string;
 	let homeCardClasses: string;
 	let pageDescription: string;
-	let backPath: string;
 
 	$: hours = currentTime.getHours().toString().padStart(2, "0");
 	$: minutes = currentTime.getMinutes().toString().padStart(2, "0");
@@ -29,13 +27,12 @@
 
 	$: {
 		pageLocation = $page.url.pathname;
-		homeCardClasses = clsx("w-full h-1/2", pageLocation === "/" ? "block" : "hidden md:block");
+		homeCardClasses = clsx("w-full md:h-1/2", pageLocation === "/" ? "block" : "hidden md:block");
 		pageDescription = $pageContext;
 	}
 
 	onMount(() => {
 		const timeInterval = setInterval(() => (currentTime = new Date()), 1000);
-		backPath = document.referrer.split(location.origin)[1]! ?? pageLocation.split("/").slice(0, -1).join("/");
 		return () => clearInterval(timeInterval);
 	});
 
@@ -54,7 +51,7 @@
 	<div class="mx-10">
 		<Header />
 		<div class="mt-4 flex flex-col-reverse justify-end md:flex-row w-full md:space-x-5 md:space-y-0 space-y-5 h-[90vh]">
-			<div class="md:w-8/12 space-y-5 flex flex-col">
+			<div class="md:w-8/12 space-y-5 flex flex-col h-1/5 md:h-full">
 				<Card cardClassName={homeCardClasses} hoverEffects>
 					<div class="max-w-lg space-y-4">
 						<h1 class="text-inherit text-salmon">
@@ -67,21 +64,25 @@
 						<h3>hi, i'm jaden. i go by cykreet in most online spaces and i'm currently a student in south africa.</h3>
 					</div>
 				</Card>
-				<div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 h-1/2">
-					<Card cardClassName="w-full" cardTitle="Recent Commits" hoverEffects>
-						<EventList events={data.events} />
+				<div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 md:h-1/2">
+					<Card cardClassName="w-full h-1/2 md:h-full" cardTitle="Recent Commits" hoverEffects>
+						{#if data.events}
+							<EventList events={data.events} />
+						{/if}
 					</Card>
-					<Card cardClassName="w-full" cardTitle="Listening Activity" hoverEffects>
-						<ArtistsList artists={data.artists} />
+					<Card cardClassName="w-full h-1/4 md:h-full" cardTitle="Listening Activity" hoverEffects>
+						{#if data.artists}
+							<ArtistsList artists={data.artists} />
+						{/if}
 					</Card>
 				</div>
 			</div>
-			<Card cardClassName="md:w-4/12 card-gradient" className="flex flex-col space-y-6">
-				<span class="animate-top inline-flex items-center space-x-4 font-medium">
-					{#if (pageLocation.match(/\//gi) || []).length > 1 && backPath}
-						<Link href={backPath} className="hover:text-white">
+			<Card cardClassName="md:w-4/12 card-gradient h-4/5 md:h-full" className="flex flex-col space-y-6 ">
+				<span class="inline-flex items-center space-x-4 font-medium">
+					{#if (pageLocation.match(/\//gi) || []).length > 1 && history.length > 1}
+						<button on:click={() => history.back()} class="hover:text-white">
 							<ArrowLeftIcon class="w-5 h-5" />
-						</Link>
+						</button>
 					{/if}
 					<Pill className="w-full min-w-20 overflow-ellipsis overflow-x-hidden">
 						<span class="relative inline-flex h-2 w-2 m-0 mr-2">
@@ -95,7 +96,7 @@
 						<span>[{hours}:{minutes}:{seconds}]</span>
 					</span>
 				</span>
-				<div class="animate-fade h-full">
+				<div class="name-body h-full">
 					<slot />
 				</div>
 			</Card>
