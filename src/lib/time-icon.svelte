@@ -1,6 +1,6 @@
 <script lang="ts">
 	import clsx from "clsx";
-	import { SunIcon } from "svelte-feather-icons";
+	import { IconSun } from "@tabler/icons-svelte";
 
 	export let className = "";
 	const hour = new Date().getHours();
@@ -8,7 +8,7 @@
 </script>
 
 {#if hour >= 6 && hour < 18}
-	<SunIcon class="animate-[spin_5s_linear_infinite] {iconClass}" />
+	<IconSun class="animate-[spin_5s_linear_infinite] {iconClass}" />
 {:else}
 	<div class="orbit-container">
 		<div class="earth"></div>

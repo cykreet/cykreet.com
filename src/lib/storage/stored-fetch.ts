@@ -1,15 +1,11 @@
-export interface StoredData<Type> {
-	data: Type;
-	expire: number;
-}
+import { RedisMapCache } from "@sylo-digital/kas";
+import { redisConnection } from "../get-redis-connection";
 
-const expireDuration = 1000 * 60 * 60 * 6; // 6 hours
+const fetchMapCache = new RedisMapCache(redisConnection, "fetch-cache", { defaultExpiry: "2s" });
 
-export async function storedFetch<Type>(url: string, options?: RequestInit): Promise<Type | null> {
-	const storedData = localStorage.getItem(url);
-	const parsedData = storedData ? (JSON.parse(storedData) as StoredData<Type>) : null;
-	if (parsedData && Date.now() > parsedData.expire) localStorage.removeItem(url);
-	else if (parsedData) return parsedData.data;
+export async function storedFetch<Type>(key: string, url: string, options?: RequestInit): Promise<Type | null> {
+	const storedData = await fetchMapCache.get(key);
+	if (storedData) return storedData as Type;
 
 	const dataResponse = await fetch(url, options);
 	if (!dataResponse.ok) {
@@ -18,7 +14,6 @@ export async function storedFetch<Type>(url: string, options?: RequestInit): Pro
 	}
 
 	const jsonData = await dataResponse.json();
-	const expireDate = Date.now() + expireDuration;
-	localStorage.setItem(url, JSON.stringify({ data: jsonData, expire: expireDate }));
+	await fetchMapCache.set(key, jsonData);
 	return jsonData;
 }

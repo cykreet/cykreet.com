@@ -1,4 +1,4 @@
-import staticAdapter from "@sveltejs/adapter-static";
+import vercelAdapter from "@sveltejs/adapter-vercel";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsvex } from "mdsvex";
 
@@ -7,6 +7,6 @@ export default {
 	extensions: [".svelte", ".svx"],
 	preprocess: [mdsvex(), vitePreprocess()],
 	kit: {
-		adapter: staticAdapter(),
+		adapter: vercelAdapter(),
 	},
 };

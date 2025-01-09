@@ -5,12 +5,15 @@
 	export let className = "";
 	export let cardTitle = "";
 	export let hoverEffects = false;
+	export let icon: ConstructorOfATypedSvelteComponent | null = null;
+	// export let loading = false;
+
 	let cardElement: HTMLElement;
 	let hasScrolled = false;
 	let hoveringTop = false;
 
 	const cardClasses = clsx("card-background border-2 rounded-md relative shadow-sm", hoverEffects && "hoverCard", cardClassName);
-	const classNames = clsx("p-5 overflow-y-auto max-h-full", className);
+	const classNames = clsx("p-5 overflow-y-auto items-stretch h-full", className);
 	const mouseMove = (event: MouseEvent) => {
 		if (!hoverEffects) return;
 		const x = event.clientX - cardElement.getBoundingClientRect().left;
@@ -33,9 +36,14 @@
 <svelte:window on:mousemove={mouseMove} />
 
 <div bind:this={cardElement} class={cardClasses}>
-	<div class="overflow-hidden max-h-full flex flex-col">
+	<div class="overflow-hidden flex max-h-full flex-col">
 		{#if cardTitle}
-			<span class="px-5 text-sm text-grey-200 font-medium select-none z-20">{cardTitle}</span>
+			<span class="px-5 text-sm text-grey-200 font-medium select-none z-20 inline-flex gap-2 items-center">
+				{#if icon}
+					<svelte:component this={icon} class="w-4 h-4" />
+				{/if}
+				{cardTitle}
+			</span>
 			<hr class="border-[1.5px] z-20" />
 		{/if}
 		{#if hasScrolled && hoveringTop == false}

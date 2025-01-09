@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Link from "../link.svelte";
-	import type { Artist } from "./artist";
+	import type { SpotifyRecentArtists } from "../server/artists";
 
-	export let artists: Artist[];
+	export let artists: SpotifyRecentArtists[];
 </script>
 
 <div class="grid grid-flow-row grid-cols-4 gap-4">

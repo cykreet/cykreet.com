@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CircleIcon, GithubIcon, MoreHorizontalIcon } from "svelte-feather-icons";
+	import { IconBrandGithub, IconDots } from "@tabler/icons-svelte";
 	import Link from "../../lib/link.svelte";
 	import ProjectCard from "../../lib/project/project-card.svelte";
 	import { pageContext } from "../../store";
@@ -21,7 +21,7 @@
 	{#each Array.from(Object.entries(monthYearProjects)) as [monthYear, projects]}
 		<div class="flex flex-row space-x-4 rounded-md">
 			<div class="flex flex-col items-center">
-				<CircleIcon class="w-4 h-4 rounded-full fill-grey-300 p-0.5 mt-1 stroke-none" />
+				<span class="relative inline-flex bg-grey-300 rounded-full h-2 w-2 p-0.5 mt-1 stroke-none"></span>
 				<div class="w-0.5 h-full from-grey-300 bg-gradient-to-b to-transparent" />
 			</div>
 			<div class="cursor-pointer flex flex-col space-y-1 max-w-full overflow-x-hidden mb-4">
@@ -37,10 +37,10 @@
 		</div>
 	{/each}
 	<div class="flex flex-col mx-auto text-sm text-center space-y-3 max-w-60 text-grey-200">
-		<MoreHorizontalIcon class="w-6 h-6 mx-auto opacity-75" />
+		<IconDots class="w-6 h-6 mx-auto opacity-75" />
 		<span>+ a few more on github if you're curious</span>
 		<Link className="mx-auto" href="https://github.com/cykreet?tab=repositories">
-			<GithubIcon class="w-4 h-4" />
+			<IconBrandGithub class="w-4 h-4" />
 		</Link>
 	</div>
 </div>
