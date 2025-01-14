@@ -1,3 +1,4 @@
+import { artistMapCache } from ".";
 import { getSpotifyToken } from "./refresh-token";
 
 export interface SpotifyRecentArtists {
@@ -87,8 +88,12 @@ function getUniqueTrackArtist(artists: SpotifyTrackArtist[], track: SpotifyPlaye
 }
 
 export async function getRecentArtists() {
+	const cachedArtists = await artistMapCache.get<SpotifyRecentArtists[]>("artists");
+	if (cachedArtists) return cachedArtists;
+
 	const spotifyToken = await getSpotifyToken();
 	const spotifyTracks = await getRecentTracks(spotifyToken);
 	const recentArtists = await getPrimaryArtists(spotifyToken, spotifyTracks.items);
+	await artistMapCache.set("artists", recentArtists);
 	return recentArtists;
 }

@@ -18,7 +18,7 @@ const commitTypes: CommitType[] = [
 	["test", ["Tests", "!text-indigo-500 !border-indigo-500"]],
 	["build", ["Build", "!text-magenta-500 !border-magenta-500"]],
 	["ci", ["CI", "!text-teal-500 !border-teal-500"]],
-	["chore", ["Chores", "!text-gray-500 !border-gray-500"]],
+	["chore", ["Chore", "!text-gray-500 !border-gray-500"]],
 ];
 
 export function parseConventionalCommit(message: string): ConvetionalCommit {
