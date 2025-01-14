@@ -37,20 +37,19 @@ export const actions = {
 			return fail(400, { message: "The provided email is invalid" });
 		}
 
+		// https://vercel.com/docs/edge-network/headers/request-headers#x-forwarded-for
+		const requestIp = request.headers.get("x-forwarded-for") ?? getClientAddress();
 		const turnstileToken = formData.get("cf-turnstile-response");
 		const tokenResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ response: turnstileToken, secret: CLOUDFLARE_SECRET_KEY }),
+			body: JSON.stringify({ response: turnstileToken, secret: CLOUDFLARE_SECRET_KEY, remoteip: requestIp }),
 		});
 
-		const tokenJson = await tokenResponse.json();
-		if (tokenJson.success === false) return fail(400, { message: "Failed to validate captcha" });
-
-		// https://vercel.com/docs/edge-network/headers/request-headers#x-forwarded-for
-		const requestIp = request.headers.get("x-forwarded-for") ?? getClientAddress();
+		const tokenJson = (await tokenResponse.json()) as { success?: boolean };
+		if (!tokenResponse.ok || tokenJson?.success !== true) return fail(400, { message: "Failed to validate captcha" });
 		if (clientKeys.includes(requestIp)) return fail(429, { message: "Please wait before sending another message" });
 		await clientSetCache.add(requestIp);
 
