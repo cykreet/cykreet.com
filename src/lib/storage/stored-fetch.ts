@@ -1,7 +1,7 @@
 import { RedisMapCache } from "@sylo-digital/kas";
-import { redisConnection } from "../get-redis-connection";
+import { redisConnection } from "../helpers/get-redis-connection";
 
-const fetchMapCache = new RedisMapCache(redisConnection, "fetch-cache", { defaultExpiry: "2s" });
+const fetchMapCache = new RedisMapCache(redisConnection, "fetch-cache", { defaultExpiry: "4h" });
 
 export async function storedFetch<Type>(key: string, url: string, options?: RequestInit): Promise<Type | null> {
 	const storedData = await fetchMapCache.get(key);

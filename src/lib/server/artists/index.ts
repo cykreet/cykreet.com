@@ -1,5 +1,5 @@
 import { RedisMapCache } from "@sylo-digital/kas";
-import { redisConnection } from "../../get-redis-connection";
+import { redisConnection } from "../../helpers/get-redis-connection";
 
-export const artistMapCache = new RedisMapCache(redisConnection, "artist-cache", { defaultExpiry: "2s" });
+export const artistMapCache = new RedisMapCache(redisConnection, "artist-cache", { defaultExpiry: "6h" });
 export * from "./recent-artists";
