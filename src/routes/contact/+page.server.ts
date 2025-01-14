@@ -39,13 +39,18 @@ export const actions = {
 
 		// https://vercel.com/docs/edge-network/headers/request-headers#x-forwarded-for
 		const requestIp = request.headers.get("x-forwarded-for") ?? getClientAddress();
-		const turnstileToken = formData.get("cf-turnstile-response");
+		const turnstileToken = formData.get("cf-turnstile-response")?.toString();
+		if (turnstileToken == null) return fail(400, { message: "Captcha response missing" });
 		const tokenResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ response: turnstileToken, secret: CLOUDFLARE_SECRET_KEY, remoteip: requestIp }),
+			body: JSON.stringify({
+				response: turnstileToken,
+				secret: CLOUDFLARE_SECRET_KEY,
+				remoteip: requestIp,
+			}),
 		});
 
 		const tokenJson = (await tokenResponse.json()) as { success?: boolean };
