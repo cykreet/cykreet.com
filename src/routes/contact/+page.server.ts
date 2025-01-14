@@ -1,7 +1,7 @@
 import { type Actions, fail } from "@sveltejs/kit";
 import { RedisSetCache } from "@sylo-digital/kas";
 import { validate } from "deep-email-validator";
-import { fetchWithRetry as fetch } from "../../lib/helpers/fetch-with-retry.js";
+import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
 import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
@@ -54,7 +54,7 @@ export const actions = {
 		mailgunUrl.searchParams.set("subject", `Contact form submission from ${name}`);
 		mailgunUrl.searchParams.set("text", message);
 
-		const response = await fetch(mailgunUrl, {
+		const response = await fetchWithRetry(mailgunUrl, {
 			method: "POST",
 			headers: {
 				Authorization: `Basic ${encodedAuth}`,
