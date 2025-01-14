@@ -1,3 +1,4 @@
+import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } from "$env/static/private";
 import { artistMapCache } from ".";
 
 const TOKEN_VALID = 3600 * 1000; // 1 hour
@@ -6,22 +7,20 @@ async function getAccessToken() {
 	// to acquire a refresh token, follow spotify oauth2 flow
 	// https://developer.spotify.com/documentation/web-api/tutorials/code-flow
 	// refresh tokens are long-lived and can be used to get new access tokens
-	const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
-	const spotifyClientId = process.env.SPOTIFY_CLIENT_ID;
-	const spotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-	if (refreshToken == null || spotifyClientId == null || spotifyClientSecret == null)
-		throw new Error("No refresh token found");
+	// todo: skip errors and simply return an empty artist array
+	if (SPOTIFY_REFRESH_TOKEN == null || SPOTIFY_CLIENT_ID == null || SPOTIFY_CLIENT_SECRET == null)
+		throw new Error("Spotify environment variables not set");
 
 	const tokenUrl = "https://accounts.spotify.com/api/token";
 	const request = new Request(tokenUrl, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
-			Authorization: `Basic ${btoa(`${spotifyClientId}:${spotifyClientSecret}`)}`,
+			Authorization: `Basic ${btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`)}`,
 		},
 		body: new URLSearchParams({
 			grant_type: "refresh_token",
-			refresh_token: refreshToken,
+			refresh_token: SPOTIFY_REFRESH_TOKEN,
 		}),
 	});
 

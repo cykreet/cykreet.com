@@ -3,6 +3,7 @@ import { RedisSetCache } from "@sylo-digital/kas";
 import { validate } from "deep-email-validator";
 import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
 import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
+import { CLOUDFLARE_SECRET_KEY, MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
 const CLIENT_TTL_MS = 1000 * 60 * 60 * 2; // 2 hours
@@ -11,12 +12,6 @@ const clientSetCache = new RedisSetCache<string>(redisConnection, "mail-clients"
 
 export const actions = {
 	default: async ({ request, getClientAddress }) => {
-		const mailgunKey = process.env.MAILGUN_KEY;
-		const mailgunDomain = process.env.MAILGUN_DOMAIN;
-		const mailgunTo = process.env.MAILGUN_TO;
-		if (mailgunKey == null || mailgunDomain == null || mailgunTo == null)
-			throw new Error("Mailgun environment variables not set");
-
 		const clientKeys = await clientSetCache.keys();
 		if (clientKeys.length === 0) {
 			// redis sets don't support ttls so we use the first entry in the set
@@ -42,15 +37,27 @@ export const actions = {
 			return fail(400, { message: "The provided email is invalid" });
 		}
 
+		const turnstileToken = formData.get("cf-turnstile-response");
+		const tokenResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ response: turnstileToken, secret: CLOUDFLARE_SECRET_KEY }),
+		});
+
+		const tokenJson = await tokenResponse.json();
+		if (tokenJson.success === false) return fail(400, { message: "Failed to validate captcha" });
+
 		// https://vercel.com/docs/edge-network/headers/request-headers#x-forwarded-for
 		const requestIp = request.headers.get("x-forwarded-for") ?? getClientAddress();
 		if (clientKeys.includes(requestIp)) return fail(429, { message: "Please wait before sending another message" });
 		await clientSetCache.add(requestIp);
 
-		const encodedAuth = btoa(`api:${mailgunKey}`);
-		const mailgunUrl = new URL(`${MAILGUN_HOST}/v3/${mailgunDomain}/messages`);
+		const encodedAuth = btoa(`api:${MAILGUN_KEY}`);
+		const mailgunUrl = new URL(`${MAILGUN_HOST}/v3/${MAILGUN_DOMAIN}/messages`);
 		mailgunUrl.searchParams.set("from", `${name} <${fromEmail}>`);
-		mailgunUrl.searchParams.set("to", mailgunTo);
+		mailgunUrl.searchParams.set("to", MAILGUN_TO);
 		mailgunUrl.searchParams.set("subject", `Contact form submission from ${name}`);
 		mailgunUrl.searchParams.set("text", message);
 

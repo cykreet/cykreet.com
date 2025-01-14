@@ -1,12 +1,14 @@
 <script lang="ts">
-  import type { ActionData } from "./$types";
   import { enhance } from "$app/forms";
+  import { IconAsteriskSimple } from "@tabler/icons-svelte";
   import { ButtonStyle } from "../../lib/button/button";
   import Button from "../../lib/button/button.svelte";
   import Input from "../../lib/input/input.svelte";
   import Link from "../../lib/link.svelte";
   import { pageContext } from "../../store";
-  import { IconAsteriskSimple } from "@tabler/icons-svelte";
+  import type { ActionData } from "./$types";
+  import { Turnstile } from "svelte-turnstile";
+  import { PUBLIC_CLOUDFLARE_SITE_KEY } from "$env/static/public";
 
   export let form: ActionData | undefined;
 
@@ -47,6 +49,7 @@
     title="Message"
     placeholder="Enter your message"
   />
+  <Turnstile siteKey={PUBLIC_CLOUDFLARE_SITE_KEY} theme="dark" />
   <div class="w-full space-y-2">
     <Button className="text-center w-full" loading={formLoading} buttonStyle={ButtonStyle.Primary} type="submit"
       >Send</Button
