@@ -7,8 +7,6 @@
   import Link from "../../lib/link.svelte";
   import { pageContext } from "../../store";
   import type { ActionData } from "./$types";
-  import { Turnstile } from "svelte-turnstile";
-  import { PUBLIC_CLOUDFLARE_SITE_KEY } from "$env/static/public";
 
   export let form: ActionData | undefined;
 
@@ -49,7 +47,6 @@
     title="Message"
     placeholder="Enter your message"
   />
-  <Turnstile siteKey={PUBLIC_CLOUDFLARE_SITE_KEY} theme="dark" />
   <div class="w-full space-y-2">
     <Button className="text-center w-full" loading={formLoading} buttonStyle={ButtonStyle.Primary} type="submit"
       >Send</Button
