@@ -22,7 +22,13 @@ export const actions = {
 
 		const validateAddress = await validate(fromEmail);
 		if (validateAddress.valid === false) {
-			console.log(`Failed to validate email ${fromEmail}: ${validateAddress.reason}`);
+			const failLevel = validateAddress.reason;
+			const failReason = Object.entries(validateAddress.validators).find(([key]) => key === failLevel)?.[1].reason;
+			console.log(
+				`Failed to validate email ${fromEmail}: ${validateAddress.reason}:`,
+				failReason && `\n(${failReason})`,
+			);
+
 			return fail(400, { message: "The provided email is invalid" });
 		}
 

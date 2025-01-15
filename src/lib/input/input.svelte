@@ -34,7 +34,7 @@
       currentTarget: (EventTarget & HTMLInputElement) | HTMLTextAreaElement;
     },
   ) => {
-    const inputValue = event.currentTarget.value;
+    const inputValue = event.currentTarget.value.trim();
     validate(inputValue);
     inputText = inputValue;
   };
