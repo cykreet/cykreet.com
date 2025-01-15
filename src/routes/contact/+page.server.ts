@@ -20,7 +20,10 @@ export const actions = {
 		if (name.length > 100 || fromEmail.length > 100 || message.length > 500)
 			return fail(400, { message: "Form data does not meet length requirements" });
 
-		const validateAddress = await validate(fromEmail);
+		const validateAddress = await validate({
+			email: fromEmail,
+			validateSMTP: false, // hardcoded 10s socket timeout on smtp checks not enough for vercel
+		});
 		if (validateAddress.valid === false) {
 			const failLevel = validateAddress.reason;
 			const failReason = Object.entries(validateAddress.validators).find(([key]) => key === failLevel)?.[1].reason;

@@ -25,9 +25,9 @@
 {#if form?.message}
   <button
     on:click={onMessageClick}
-    class="mt-auto select-none animate-slide-bottom bottom-0 left-0 absolute w-full p-2 text-grey-700 bg-salmon"
+    class="mt-auto select-none animate-slide-bottom bottom-0 left-0 absolute w-full p-2 text-left text-grey-700 bg-salmon"
   >
-    <span class="font-extrabold uppercase inline-flex *:z-10 items-center gap-4 align-middle m-0">
+    <span class="font-extrabold uppercase inline-flex *:z-10 gap-4 items-center align-middle m-0">
       <IconAsteriskSimple class="stroke-[3px] w-4 h-4" />
       {form.message}
     </span>
