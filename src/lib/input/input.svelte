@@ -14,7 +14,7 @@
   $: inputText = "";
   $: validationError = "";
   $: inputClassNames = clsx(
-    "w-full bg-transparent outline-none transition-all text-white text-wrap border-grey-300 align-text-top border-2 p-2 max-w-full rounded-md text focus:border-salmon",
+    "w-full bg-transparent outline-none transition-[margin-bottom] text-white text-wrap border-grey-400 align-text-top border-2 p-2 max-w-full rounded-md text focus:border-salmon",
     inputClassName,
     validationError && "!mb-2",
   );

@@ -29,7 +29,7 @@
   {#each parsedCommits as commit}
     <CommitCard {commit} />
     {#if parsedCommits.indexOf(commit) + 1 !== parsedCommits.length}
-      <hr class="mt-2 m-0 border-grey-300" />
+      <hr class="mt-2 m-0 border-grey-400" />
     {/if}
   {/each}
 </div>

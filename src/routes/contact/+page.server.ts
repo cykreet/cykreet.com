@@ -4,9 +4,9 @@ import { validate } from "deep-email-validator";
 import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
 import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
 import { MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
+import { _CLIENT_TTL_MS } from "./+page.js";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
-const CLIENT_TTL_MS = 1000 * 60 * 60 * 2; // 2 hours
 
 const clientSetCache = new RedisSetCache<string>(redisConnection, "mail-clients");
 
@@ -18,7 +18,7 @@ export const actions = {
 		const message = formData.get("message")?.toString();
 		if (name == null || fromEmail == null || message == null) return fail(400, { message: "Form data missing" });
 		if (name.length > 100 || fromEmail.length > 100 || message.length > 500)
-			return fail(400, { message: "Form data does not meet length requirements" });
+			return fail(400, { message: "Form data exceeds length requirements" });
 
 		const validateAddress = await validate({
 			email: fromEmail,
@@ -28,7 +28,7 @@ export const actions = {
 			const failLevel = validateAddress.reason;
 			const failReason = Object.entries(validateAddress.validators).find(([key]) => key === failLevel)?.[1].reason;
 			console.log(
-				`Failed to validate email ${fromEmail}: ${validateAddress.reason}:`,
+				`Failed to validate email ${fromEmail}: ${validateAddress.reason}`,
 				failReason && `\n(${failReason})`,
 			);
 
@@ -41,7 +41,7 @@ export const actions = {
 		if (clientKeys.length === 0) {
 			// redis sets don't support ttls so we use the first entry in the set
 			// as our global expiration date, once it's expired we clear the entire batch
-			const expireDate = Date.now() + CLIENT_TTL_MS;
+			const expireDate = Date.now() + _CLIENT_TTL_MS;
 			await clientSetCache.add(expireDate.toString());
 		}
 

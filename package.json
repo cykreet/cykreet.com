@@ -36,7 +36,7 @@
 		"@sylo-digital/kas": "^2.1.2",
 		"@tabler/icons-svelte": "^3.27.1",
 		"@threlte/core": "^7.3.1",
-		"@threlte/extras": "^8.12.0",
+		"@threlte/extras": "^8.12.1",
 		"clsx": "^2.1.1",
 		"deep-email-validator": "^0.1.21",
 		"pretty-ms": "^9.1.0"

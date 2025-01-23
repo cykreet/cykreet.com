@@ -30,7 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-grey-300;
+	@apply bg-grey-400;
 	border-color: transparent;
 }
 
@@ -72,6 +72,10 @@ h2 {
 h3 {
 	@apply text-2xl;
 	@apply font-medium;
+}
+
+.glass-gradient {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(248, 50, 24, 0.11528361344537819) 100%);
 }
 
 .card-gradient {
@@ -157,6 +161,15 @@ h3 {
 @keyframes fade-out {
 	to {
 		opacity: 0;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
 
