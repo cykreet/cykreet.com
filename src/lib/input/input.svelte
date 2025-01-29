@@ -3,23 +3,28 @@
   import Pill from "../pill.svelte";
   import type { HTMLInputTypeAttribute } from "svelte/elements";
 
-  export let placeholder = "";
-  export let title = "";
-  export let inputClassName = "";
-  export let type: HTMLInputTypeAttribute = "text";
-  export let required = false;
-  export let multiline = false;
-  export let maxLength: number | undefined = undefined;
+  interface Props {
+    placeholder?: string;
+    title?: string;
+    inputClassName?: string;
+    type?: HTMLInputTypeAttribute;
+    required?: boolean;
+    multiline?: boolean;
+    maxLength?: number;
+  }
 
-  $: inputText = "";
-  $: validationError = "";
-  $: inputClassNames = clsx(
-    "w-full bg-transparent outline-none transition-[margin-bottom] text-white text-wrap border-grey-400 align-text-top border-2 p-2 max-w-full rounded-md text focus:border-salmon",
-    inputClassName,
-    validationError && "!mb-2",
+  let { placeholder, title, inputClassName, type, required, multiline, maxLength }: Props = $props();
+  let inputText = $state("");
+  let validationError = $state("");
+  let inputClassNames = $derived(
+    clsx(
+      "w-full bg-transparent outline-none transition-[margin-bottom] text-white text-wrap border-grey-400 align-text-top border-2 p-2 max-w-full rounded-md text focus:border-salmon",
+      inputClassName,
+      validationError && "!mb-2",
+    ),
   );
 
-  const inputName = title.toLowerCase().replace(" ", "-");
+  const inputName = title?.toLowerCase().replace(" ", "-");
   const inputElement = multiline ? "textarea" : "input";
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const validate = (inputValue: string) => {
@@ -44,7 +49,7 @@
   };
 
   const onBlur = () => {
-    if (inputText.length === 0) validationError = `${title} is required`;
+    if (inputText.length === 0 && required) validationError = `${title} is required`;
   };
 </script>
 
@@ -62,9 +67,9 @@
     {type}
     {required}
     {placeholder}
-    on:input={onInput}
-    on:submit={onSubmit}
-    on:blur={onBlur}
+    oninput={onInput}
+    onsubmit={onSubmit}
+    onblur={onBlur}
     maxlength={maxLength}
     value={inputText}
   />

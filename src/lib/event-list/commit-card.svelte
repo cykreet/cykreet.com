@@ -5,7 +5,7 @@
   import Pill from "../pill.svelte";
   import { parseConventionalCommit } from "./parse-commit";
 
-  export let commit: Commit;
+  let { commit }: { commit: Commit } = $props();
 
   const repoName = commit.repo.split("/")[1];
   const prettyTime = prettyMs(new Date().getTime() - new Date(commit.date).getTime(), { compact: true, verbose: true });

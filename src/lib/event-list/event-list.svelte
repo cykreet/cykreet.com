@@ -2,7 +2,7 @@
   import { EventType, type Commit, type GithubEvent } from "./event";
   import CommitCard from "./commit-card.svelte";
 
-  export let events: GithubEvent[];
+  let { events }: { events: GithubEvent[] } = $props();
   const parsedCommits = events
     .filter((event) => event.type === EventType.PushEvent)
     .flatMap((event) => {

@@ -1,11 +1,17 @@
 <script lang="ts">
   import clsx from "clsx";
+  import type { Snippet } from "svelte";
 
-  export let href: string;
-  export let title: string | undefined = undefined;
-  export let decorated: boolean | undefined = false;
-  export let className: string | undefined = undefined;
-  export let style: string | undefined = undefined;
+  interface Props {
+    href: string;
+    children: Snippet;
+    title?: string;
+    decorated?: boolean;
+    className?: string;
+    style?: string;
+  }
+
+  let { href, title, children, decorated, className, style }: Props = $props();
 
   const external = href.startsWith("http");
   const target = external ? "_blank" : undefined;
@@ -13,5 +19,5 @@
 </script>
 
 <a class={classNames} {target} {href} {title} {style}>
-  <slot />
+  {@render children()}
 </a>

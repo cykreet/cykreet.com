@@ -1,11 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+	--color-background: #090a0a;
+
+	--color-grey: #202123;
+	--color-grey-100: #9d9ea1;
+	--color-grey-200: #7d7e81;
+	--color-grey-300: #646569;
+	--color-grey-400: #202123;
+	--color-grey-700: #101217;
+	--color-grey-900: #0b0b0f;
+
+	--color-salmon: #e83e27;
+	--color-salmon-50: #fc7968;
+	--color-salmon-100: #e83e27;
+}
 
 body {
 	@apply text-grey-100;
 	@apply bg-background;
-	/* @apply font-medium; */
+	font-family: "Space Grotesk", sans-serif;
 	font-optical-sizing: auto;
 	overflow-y: overlay;
 	overflow-x: hidden;
@@ -55,7 +69,6 @@ a:hover {
 h1,
 h2,
 h3 {
-	@apply text-white;
 	@apply tracking-tight;
 }
 
@@ -65,11 +78,13 @@ h1 {
 }
 
 h2 {
+	@apply text-white;
 	@apply text-4xl;
 	@apply font-bold;
 }
 
 h3 {
+	@apply text-white;
 	@apply text-2xl;
 	@apply font-medium;
 }

@@ -1,11 +1,17 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import Loader from "../loader.svelte";
   import { ButtonStyle } from "./button";
 
-  export let className = "";
-  export let type: "button" | "submit" | "reset" = "button";
-  export let loading = false;
-  export let buttonStyle: ButtonStyle = ButtonStyle.Secondary;
+  interface Props {
+    children: Snippet;
+    className?: string;
+    type?: "button" | "submit" | "reset";
+    loading?: boolean;
+    buttonStyle?: ButtonStyle;
+  }
+
+  let { className, children, type = "button", loading = false, buttonStyle = ButtonStyle.Secondary }: Props = $props();
 </script>
 
 <button
@@ -15,6 +21,6 @@
   {#if loading}
     <Loader />
   {:else}
-    <slot />
+    {@render children()}
   {/if}
 </button>
