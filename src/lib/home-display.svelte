@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from "@threlte/core";
-  import { interactivity, RoundedBoxGeometry, Text3DGeometry } from "@threlte/extras";
+  import { interactivity } from "@threlte/extras";
   import { Spring } from "svelte/motion";
 
   const DAMPING_FACTOR = 0.3;
@@ -8,7 +8,7 @@
   const HEIGHT_OFFSET = 200;
 
   interactivity();
-  const scale = new Spring(1);
+  // const scale = new Spring(1);
   const rotation = new Spring(
     { x: 0, y: 0, z: 0 },
     {
@@ -45,31 +45,10 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[15, 2, 0]}
-  on:create={({ ref }) => {
-    ref.lookAt(0, 1, 0);
+  position={[20, 40, 0]}
+  oncreate={(instance) => {
+    instance.lookAt(0, 1, 0);
   }}
 />
 
-<T.AmbientLight intensity={0.8} />
-
-<T.Group
-  position.y={1}
-  rotation={[rotation.current.x, rotation.current.y, rotation.current.z]}
-  scale={scale.current}
-  on:pointerenter={() => scale.set(1.2)}
-  on:pointerleave={() => scale.set(1)}
->
-  <T.Mesh>
-    <RoundedBoxGeometry args={[0.1, 8, 16]} />
-    <T.MeshPhongMaterial color="hotpink" />
-  </T.Mesh>
-  <T.Mesh rotation={[0, Math.PI / 2, 0]} position={[2, 0, 6]}>
-    <Text3DGeometry size={2} bevelSize={2} depth={0.3} text="Hello, World!" />
-    <T.MeshStandardMaterial color="white" />
-  </T.Mesh>
-  <T.Mesh position={[0.5, 0, 0]}>
-    <RoundedBoxGeometry args={[1, 6, 12]} />
-    <T.MeshPhongMaterial color="blue" />
-  </T.Mesh>
-</T.Group>
+<!-- <T.AmbientLight intensity={0.8} /> -->
