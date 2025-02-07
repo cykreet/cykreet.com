@@ -22,6 +22,7 @@
 
 <svelte:head>
   <title>Contact</title>
+  <meta name="description" content="let's get in touch" />
 </svelte:head>
 
 {#if form?.message}

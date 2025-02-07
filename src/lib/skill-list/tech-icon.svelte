@@ -36,7 +36,10 @@
         className="text-sm inline-flex items-center align-middle gap-2 opacity-75 hover:opacity-100"
         style={`color: ${meta.colour}`}
       >
-        Learn more <IconExternalLink class="h-4 w-4" />
+        <span class="overflow-x-hidden text-ellipsis whitespace-nowrap">
+          {meta.website.replace("https://", "")}
+        </span>
+        <IconExternalLink class="h-4 w-4" />
       </Link>
     </HoverContainer>
   {/snippet}

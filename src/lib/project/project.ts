@@ -3,6 +3,7 @@ import type { Technology, TechnologyMeta } from "../skill-list/skill";
 export interface Project {
 	name: string;
 	slug: string;
+	hero?: string;
 	// status: string;
 	description: string;
 	technologies?: Record<Technology, TechnologyMeta>;
@@ -12,6 +13,7 @@ export interface Project {
 export interface ProjectFrontmatter {
 	name: string;
 	description: string;
+	hero?: string;
 	technologies?: string[];
 	publishedDate: string;
 }

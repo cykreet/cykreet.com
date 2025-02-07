@@ -57,7 +57,7 @@
   <div class="flex justify-between items-center">
     <span class={validationError ? "text-salmon" : "text-white"}>{title}</span>
     {#if maxLength}
-      <Pill className="text-xs border-none bg-salmon">{inputText.length} / {maxLength}</Pill>
+      <Pill className="text-xs border-none bg-salmon/50">{inputText.length} / {maxLength}</Pill>
     {/if}
   </div>
   <svelte:element

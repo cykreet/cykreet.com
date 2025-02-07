@@ -8,6 +8,7 @@
     children: Snippet;
     cardClassName?: string;
     className?: string;
+    style?: string;
     cardTitle?: string;
     tooltip?: string;
     hoverEffects?: boolean;
@@ -15,7 +16,7 @@
     // loading?: boolean;
   }
 
-  let { cardClassName, className, children, cardTitle, tooltip, hoverEffects, Icon }: Props = $props();
+  let { cardClassName, className, children, style, cardTitle, tooltip, hoverEffects, Icon }: Props = $props();
   let cardElement: HTMLElement;
   let hasScrolled = $state(false);
   let hoveringTop = $state(false);
@@ -48,7 +49,7 @@
 
 <svelte:window on:mousemove={mouseMove} />
 
-<div bind:this={cardElement} class={cardClasses}>
+<div bind:this={cardElement} class={cardClasses} {style}>
   <div class="overflow-hidden flex max-h-full flex-col">
     {#if cardTitle}
       <HoverFrame className="w-fit z-30">

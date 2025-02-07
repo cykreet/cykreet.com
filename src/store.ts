@@ -1,3 +1,3 @@
 import { writable } from "svelte/store";
 
-export const pageContext = writable<string>();
+export const pageContext = writable<string | undefined>();

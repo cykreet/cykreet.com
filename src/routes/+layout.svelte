@@ -19,7 +19,7 @@
   let { data, children }: LayoutProps = $props();
 
   let pageLocation = $state("");
-  let pageDescription = $state("");
+  let pageDescription = $state<string | undefined>(undefined);
   let homeCardClasses = $derived(
     clsx("w-full md:h-1/2 overflow-hidden relative z-0", pageLocation === "/" ? "block" : "hidden md:block"),
   );
@@ -67,7 +67,6 @@
               <h3>hi, i'm jaden. i go by cykreet in most online spaces and i'm currently a student in south africa.</h3>
             </div>
             <div class="w-1/2">
-              <!-- todo: broke with svelte 5 not sure why -->
               <Canvas>
                 <HomeDisplay />
               </Canvas>
@@ -114,7 +113,7 @@
               <IconArrowLeft class="w-6 h-6" />
             </button>
           {/if}
-          <Pill className="w-full min-w-20 text-ellipsis overflow-x-hidden">
+          <Pill decorated className="w-full min-w-20 text-ellipsis overflow-x-hidden">
             <span class="relative inline-flex h-2 w-2 m-0 mr-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-salmon opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-salmon"></span>
@@ -122,7 +121,7 @@
             <span>{pageLocation}</span>
           </Pill>
           <span class="text-sm text-grey-200 inline-flex w-full justify-between">
-            <span class="text-ellipsis">{pageDescription ? `$ ${pageDescription}` : ""}</span>
+            <span class="text-ellipsis">{pageDescription ? `$ ${pageDescription}` : undefined}</span>
             <span>[{timeString}]</span>
           </span>
         </span>
