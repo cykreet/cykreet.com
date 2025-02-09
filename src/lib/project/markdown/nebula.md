@@ -4,9 +4,4 @@ description: WhatsApp business response bot configured through the Contentful co
 publishedDate: "2023-12-30"
 ---
 
-<svelte:head>
-	<title>{metadata.name}</title>
-	<meta name="description" content="{metadata.description}">
-</svelte:head>
-
 ### this is the title

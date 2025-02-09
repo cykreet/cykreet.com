@@ -4,7 +4,7 @@ import { Skills, type TechnologyMeta } from "$lib/skill-list/skill";
 // mdsvex exports a `metadata` property on the module object that exposes the frontmatter
 type ProjectModules = Record<string, { metadata: ProjectFrontmatter }>;
 
-const projectModules = import.meta.glob("./**/*.svx", { eager: true }) as ProjectModules;
+const projectModules = import.meta.glob("$lib/**/project/markdown/*.md", { eager: true }) as ProjectModules;
 export const _projects: Project[] = Object.values(projectModules).map((module) => {
 	// todo: slug from project path
 	const parsedDate = new Date(module.metadata.publishedDate);

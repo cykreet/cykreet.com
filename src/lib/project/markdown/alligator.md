@@ -5,10 +5,4 @@ technologies: ["Rust", "Docker"]
 publishedDate: "2022-07-19"
 ---
 
-<svelte:head>
-	<title>{metadata.name}</title>
-	<meta name="description" content="{metadata.description}">
-</svelte:head>
-
-
 ### this is the titl

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { IconBrandGithub, IconDots } from "@tabler/icons-svelte";
-  import Link from "../../lib/link.svelte";
-  import ProjectCard from "../../lib/project/project-card.svelte";
   import { pageContext } from "../../store";
   import { _projects } from "./+page";
+  import ProjectCard from "$lib/project/project-card.svelte";
+  import Link from "$lib/link.svelte";
 
   const sortedProjects = _projects.sort((a, b) => a.name.localeCompare(b.name));
   pageContext.set("notable projects i've been working on");

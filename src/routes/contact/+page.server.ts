@@ -3,7 +3,7 @@ import { RedisSetCache } from "@sylo-digital/kas";
 import { validate } from "deep-email-validator";
 import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
 import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
-import { MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
+import { VITE_MAILGUN_DOMAIN, VITE_MAILGUN_KEY, VITE_MAILGUN_TO } from "$env/static/private";
 import { _CLIENT_TTL_MS } from "./+page.js";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
@@ -50,10 +50,10 @@ export const actions = {
 		if (clientKeys.includes(requestIp)) return fail(429, { message: "Please wait before sending another message" });
 		await clientSetCache.add(requestIp);
 
-		const encodedAuth = btoa(`api:${MAILGUN_KEY}`);
-		const mailgunUrl = new URL(`${MAILGUN_HOST}/v3/${MAILGUN_DOMAIN}/messages`);
+		const encodedAuth = btoa(`api:${VITE_MAILGUN_KEY}`);
+		const mailgunUrl = new URL(`${MAILGUN_HOST}/v3/${VITE_MAILGUN_DOMAIN}/messages`);
 		mailgunUrl.searchParams.set("from", `${name} <${fromEmail}>`);
-		mailgunUrl.searchParams.set("to", MAILGUN_TO);
+		mailgunUrl.searchParams.set("to", VITE_MAILGUN_TO);
 		mailgunUrl.searchParams.set("subject", `Contact form submission from ${name}`);
 		mailgunUrl.searchParams.set("text", message);
 		const response = await fetchWithRetry(mailgunUrl, {

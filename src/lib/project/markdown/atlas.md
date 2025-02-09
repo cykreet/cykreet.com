@@ -6,9 +6,4 @@ technologies: ["React", "Rust", "Vite", "TypeScript", "Tailwind", "Docker"]
 publishedDate: "2021-01-01"
 ---
 
-<svelte:head>
-	<title>{metadata.name}</title>
-	<meta name="description" content="{metadata.description}">
-</svelte:head>
-
 ### this is the title

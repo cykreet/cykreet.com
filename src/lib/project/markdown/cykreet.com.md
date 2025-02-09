@@ -5,9 +5,4 @@ technologies: ["Bun", "SvelteKit", "Vite", "Tailwind", "TypeScript"]
 publishedDate: "2025-01-15"
 ---
 
-<svelte:head>
-	<title>{metadata.name}</title>
-	<meta name="description" content="{metadata.description}">
-</svelte:head>
-
 ### this is

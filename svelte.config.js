@@ -4,8 +4,8 @@ import { mdsvex } from "mdsvex";
 
 /** @type {import("@sveltejs/kit").Config} */
 export default {
-	extensions: [".svelte", ".svx"],
-	preprocess: [mdsvex(), vitePreprocess()],
+	extensions: [".svelte", ".md"],
+	preprocess: [mdsvex({ extension: ".md" }), vitePreprocess()],
 	kit: {
 		adapter: vercelAdapter(),
 	},

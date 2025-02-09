@@ -2,7 +2,7 @@ import type { Technology, TechnologyMeta } from "../skill-list/skill";
 
 export interface Project {
 	name: string;
-	slug: string;
+	slug?: string;
 	hero?: string;
 	// status: string;
 	description: string;
