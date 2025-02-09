@@ -20,7 +20,6 @@
 		"@tailwindcss/vite": "^4.0.5",
 		"@types/bun": "^1.2.2",
 		"@types/cookie": "^1.0.0",
-		"@yushijinhun/three-minifier-rollup": "^0.4.0",
 		"ioredis": "^5.5.0",
 		"mdsvex": "^0.12.3",
 		"postcss": "^8.5.1",
