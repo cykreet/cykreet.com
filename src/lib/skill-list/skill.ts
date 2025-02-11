@@ -89,13 +89,13 @@ export const Skills = {
 		icon: IconBrandUbuntu,
 	},
 	[Technology.Nextjs]: {
-		description: "A React framework",
+		description: "A React framework which provides additional features to streamline full-stack web development.",
 		website: "https://nextjs.org",
 		colour: "white",
 		icon: IconBrandNextjs,
 	},
 	[Technology.React]: {
-		description: "A JavaScript library",
+		description: "JavaScript component-based user interface library for web and native applications.",
 		website: "https://reactjs.org",
 		colour: "#61dafb",
 		icon: IconBrandReact,
@@ -115,7 +115,7 @@ export const Skills = {
 		icon: IconBrandSvelte,
 	},
 	[Technology.Tailwind]: {
-		description: "A utility-first CSS framework",
+		description: "A utility-first CSS framework leveraged directly in code markup.",
 		website: "https://tailwindcss.com",
 		colour: "#1dc0cd",
 		icon: IconBrandTailwind,

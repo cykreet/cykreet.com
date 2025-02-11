@@ -3,6 +3,6 @@ import { _projects } from "../+page";
 
 export const load = (({ params }) => {
 	const project = params.project;
-	const metadata = _projects[project];
-	return { metadata };
+	const projectModule = _projects.find((p) => p.name.toLowerCase() === project);
+	return projectModule;
 }) satisfies PageLoad;

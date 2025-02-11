@@ -21,7 +21,7 @@
   let pageLocation = $state("");
   let pageDescription = $state<string | undefined>(undefined);
   let homeCardClasses = $derived(
-    clsx("w-full md:h-1/2 overflow-hidden relative z-0", pageLocation === "/" ? "block" : "hidden md:block"),
+    clsx("w-full md:h-1/2 overflow-hidden relative z-0 md:block", pageLocation === "/" ? "block" : "hidden"),
   );
   let currentTime = $state(new Date());
   let timeString = $state("");
@@ -49,10 +49,10 @@
 </script>
 
 <main>
-  <div class="mx-10">
+  <div class="mx-2 md:!10">
     <Header />
-    <div class="mt-4 flex flex-col-reverse justify-end md:flex-row w-full md:space-x-5 md:space-y-0 space-y-5 h-[88vh]">
-      <div class="md:w-8/12 space-y-5 flex flex-col h-1/5 md:h-full">
+    <div class="mt-4 flex flex-col-reverse md:flex-row w-full md:space-x-5 md:gap-0 gap-5 md:h-[88vh]">
+      <div class="md:w-8/12 space-y-5 flex flex-col h-full md:h-full">
         <Card cardClassName={homeCardClasses}>
           <div class="card-glow"></div>
           <div class="flex w-full justify-between">
@@ -75,7 +75,7 @@
         </Card>
         <div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 md:h-1/2">
           <Card
-            cardClassName="w-full h-1/2 md:h-full"
+            cardClassName="w-full md:h-full"
             Icon={IconGitPullRequest}
             cardTitle="Recent Commits"
             tooltip="Recent commits I've made to repositories on GitHub."
@@ -106,7 +106,7 @@
           </Card>
         </div>
       </div>
-      <Card cardClassName="md:w-4/12 card-gradient h-4/5 md:h-full overflow-hidden" className="flex flex-col space-y-6">
+      <Card cardClassName="md:w-4/12 card-gradient md:h-full overflow-hidden" className="flex flex-col space-y-6">
         <span class="inline-flex items-center space-x-4 font-medium">
           {#if (pageLocation.match(/\//gi) || []).length > 1}
             <button onclick={() => history?.back()} class="hover:text-white cursor-pointer">

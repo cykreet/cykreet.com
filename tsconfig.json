@@ -4,6 +4,7 @@
 		"lib": ["ESNext", "DOM"],
 		"target": "ESNext",
 		"module": "ESNext",
+		"typeRoots": ["./src/types"],
 		"moduleDetection": "force",
 		"allowJs": true,
 		"moduleResolution": "Bundler",

@@ -2,7 +2,7 @@ import type { Project, ProjectFrontmatter } from "$lib/project/project";
 import { Skills, type TechnologyMeta } from "$lib/skill-list/skill";
 
 // mdsvex exports a `metadata` property on the module object that exposes the frontmatter
-type ProjectModules = Record<string, { metadata: ProjectFrontmatter }>;
+type ProjectModules = Record<string, { metadata: ProjectFrontmatter; default: ConstructorOfATypedSvelteComponent }>;
 
 const projectModules = import.meta.glob("$lib/**/project/markdown/*.md", { eager: true }) as ProjectModules;
 export const _projects: Project[] = Object.values(projectModules).map((module) => {
@@ -17,6 +17,7 @@ export const _projects: Project[] = Object.values(projectModules).map((module) =
 	return {
 		...module.metadata,
 		technologies,
+		component: module.default,
 		publishedDate: parsedDate,
 	};
 });

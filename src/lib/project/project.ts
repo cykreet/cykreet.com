@@ -6,6 +6,7 @@ export interface Project {
 	hero?: string;
 	// status: string;
 	description: string;
+	component: ConstructorOfATypedSvelteComponent;
 	technologies?: Record<Technology, TechnologyMeta>;
 	publishedDate: Date;
 }
