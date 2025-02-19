@@ -4,5 +4,3 @@ description: This very website, built to host my projects and professional infor
 technologies: ["Bun", "SvelteKit", "Vite", "Tailwind", "TypeScript"]
 publishedDate: "2025-01-15"
 ---
-
-### this is

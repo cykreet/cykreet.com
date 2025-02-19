@@ -11,6 +11,10 @@
 	--color-grey-700: #101217;
 	--color-grey-900: #0b0b0f;
 
+	--color-lavender: #a793de;
+	--color-lavender-50: #bba7f2;
+	--color-lavender-100: #a793de;
+
 	--color-salmon: #e83e27;
 	--color-salmon-50: #fc7968;
 	--color-salmon-100: #e83e27;
@@ -54,7 +58,7 @@ body {
 }
 
 ::selection {
-	@apply bg-salmon;
+	@apply bg-lavender;
 	@apply text-black;
 }
 
@@ -90,13 +94,13 @@ h3 {
 }
 
 .glass-gradient {
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(248, 50, 24, 0.11528361344537819) 100%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(158, 24, 248, 0.115) 100%);
 }
 
 .card-gradient {
-	background: -moz-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(36, 12, 12) 100%);
-	background: -webkit-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(36, 12, 12) 100%);
-	background: linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(36, 12, 12) 100%);
+	background: -moz-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
+	background: -webkit-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
+	background: linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
 }
 
 .card-glow {
@@ -104,9 +108,9 @@ h3 {
 		80% 75.9245283018868% at 40% 40.5%,
 		rgba(0, 81, 255, 0) 0%,
 		rgba(0, 153, 255, 0) 36%,
-		rgba(255, 255, 255, 0) 63%,
-		rgba(255, 0, 0, 0.25) 83%,
-		rgb(248, 50, 24) 100%
+		rgba(103, 79, 126, 0) 63%,
+		rgba(87, 69, 110, 0.25) 83%,
+		rgb(198, 131, 207) 100%
 	);
 	bottom: 0;
 	flex: none;

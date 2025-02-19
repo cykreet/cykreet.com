@@ -15,7 +15,7 @@
 
   const external = href.startsWith("http");
   const target = external ? "_blank" : undefined;
-  const classNames = clsx("cursor-pointer", decorated && "text-salmon hover:text-salmon-50", className);
+  const classNames = clsx("cursor-pointer", decorated && "text-lavender hover:text-lavender-50", className);
 </script>
 
 <a class={classNames} {target} {href} {title} {style}>

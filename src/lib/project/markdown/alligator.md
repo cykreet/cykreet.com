@@ -4,5 +4,3 @@ description: Discord webhook proxy server, which batches sequential requests to 
 technologies: ["Rust", "Docker"]
 publishedDate: "2022-07-19"
 ---
-
-### this is the titl

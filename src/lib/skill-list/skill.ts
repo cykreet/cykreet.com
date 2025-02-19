@@ -127,7 +127,7 @@ export const Skills = {
 		icon: IconBrandTypescript,
 	},
 	[Technology.Vite]: {
-		description: "A build tool",
+		description: "Modern, fast web build tool providing hot module reloading.",
 		website: "https://vitejs.dev",
 		colour: "#ffcd25",
 		icon: IconBrandVite,

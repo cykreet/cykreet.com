@@ -8,7 +8,6 @@
     ? Object.entries(project.technologies)
         .map(([name, meta]) => ({ name, meta }))
         .slice(0, 4)
-        .sort((a, b) => a.name.localeCompare(b.name))
     : undefined;
 </script>
 

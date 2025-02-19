@@ -6,7 +6,7 @@
 
   $: hour = new Date().getHours();
 
-  const iconClass = clsx("text-salmon fill-salmon", className);
+  const iconClass = clsx("text-lavender fill-lavender", className);
 </script>
 
 {#if hour >= 6 && hour < 18}
@@ -28,8 +28,8 @@
   }
 
   .earth {
-    background-color: var(--color-salmon);
-    /* @apply bg-salmon; */
+    background-color: var(--color-lavender);
+    /* @apply bg-lavender; */
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -40,8 +40,8 @@
   }
 
   .moon {
-    background-color: var(--color-salmon);
-    /* @apply bg-salmon; */
+    background-color: var(--color-lavender);
+    /* @apply bg-lavender; */
     width: 15px;
     height: 15px;
     border-radius: 50%;

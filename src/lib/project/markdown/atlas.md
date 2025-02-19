@@ -5,5 +5,3 @@ description: Automation and custom scripting platform for the Discord messaging 
 technologies: ["React", "Rust", "Vite", "TypeScript", "Tailwind", "Docker"]
 publishedDate: "2021-01-01"
 ---
-
-### this is the title

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from "@threlte/core";
-  import { interactivity } from "@threlte/extras";
+  import { Text3DGeometry, interactivity } from "@threlte/extras";
   import { Spring } from "svelte/motion";
 
   const DAMPING_FACTOR = 0.3;
@@ -8,7 +8,7 @@
   const HEIGHT_OFFSET = 200;
 
   interactivity();
-  // const scale = new Spring(1);
+  const scale = new Spring(1);
   const rotation = new Spring(
     { x: 0, y: 0, z: 0 },
     {
@@ -51,4 +51,19 @@
   }}
 />
 
-<!-- <T.AmbientLight intensity={0.8} /> -->
+<T.AmbientLight intensity={0.2} />
+
+<T.DirectionalLight intensity={1.0} />
+
+<T.Group
+  position.y={1}
+  rotation={[rotation.current.x, rotation.current.y, rotation.current.z]}
+  scale={scale.current}
+  on:pointerenter={() => scale.set(1.2)}
+  on:pointerleave={() => scale.set(1)}
+>
+  <T.Mesh rotation={[0, Math.PI / 2, 0]} position={[2, 0, 6]}>
+    <Text3DGeometry size={14} rotation={[0, Math.PI / 2, 0]} bevelSize={2} depth={2} text="**" />
+    <T.MeshStandardMaterial color="violet" />
+  </T.Mesh>
+</T.Group>

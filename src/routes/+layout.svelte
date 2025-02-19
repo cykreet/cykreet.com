@@ -20,11 +20,9 @@
 
   let pageLocation = $state("");
   let pageDescription = $state<string | undefined>(undefined);
-  let homeCardClasses = $derived(
-    clsx("w-full md:h-1/2 overflow-hidden relative z-0 md:block", pageLocation === "/" ? "block" : "hidden"),
-  );
   let currentTime = $state(new Date());
   let timeString = $state("");
+
   $effect(() => {
     timeString = `${currentTime.getHours().toString().padStart(2, "0")}:${currentTime.getMinutes().toString().padStart(2, "0")}:${currentTime.getSeconds().toString().padStart(2, "0")}`;
 
@@ -32,6 +30,7 @@
     pageDescription = $pageContext;
   });
 
+  const homeCardClasses = clsx("w-full md:h-1/2 overflow-hidden relative z-0 md:block");
   onMount(() => {
     const timeInterval = setInterval(() => (currentTime = new Date()), 1000);
     return () => clearInterval(timeInterval);
@@ -49,7 +48,7 @@
 </script>
 
 <main>
-  <div class="mx-2 md:!10">
+  <div class="mx-2 md:!mx-10">
     <Header />
     <div class="mt-4 flex flex-col-reverse md:flex-row w-full md:space-x-5 md:gap-0 gap-5 md:h-[88vh]">
       <div class="md:w-8/12 space-y-5 flex flex-col h-full md:h-full">
@@ -57,7 +56,7 @@
           <div class="card-glow"></div>
           <div class="flex w-full justify-between">
             <div class="max-w-lg space-y-4">
-              <h1 class="text-salmon">
+              <h1 class="text-lavender">
                 <span>welome to my</span>
                 <span class="inline-flex items-center space-x-4">
                   <span>corner</span>
@@ -85,16 +84,6 @@
               <EventList events={data.events} />
             {/if}
           </Card>
-          <!-- <Card
-              cardClassName="w-full h-1/4 md:h-full"
-              icon={IconBrandSpotifyFilled}
-              cardTitle="Listening Activity"
-              hoverEffects
-            >
-              {#if data.artists}
-                <ArtistsList artists={data.artists} />
-              {/if}
-            </Card> -->
           <Card
             cardClassName="w-full h-1/4 md:h-full p-0"
             Icon={IconBrandOpenSource}
@@ -115,8 +104,8 @@
           {/if}
           <Pill decorated className="w-full min-w-20 text-ellipsis overflow-x-hidden">
             <span class="relative inline-flex h-2 w-2 m-0 mr-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-salmon opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-salmon"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lavender opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-lavender"></span>
             </span>
             <span>{pageLocation}</span>
           </Pill>
