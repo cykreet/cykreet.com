@@ -5,7 +5,6 @@
 
   const DAMPING_FACTOR = 0.3;
   const ROTATION_THRESHOLD = 0.5;
-  const HEIGHT_OFFSET = 200;
 
   interactivity();
   const scale = new Spring(1);
@@ -20,7 +19,7 @@
   function mouseMove(event: MouseEvent) {
     // -1 to 1
     const normalisedX = (event.clientX / window.innerWidth) * 2 - 1;
-    const normalisedY = ((event.clientY + HEIGHT_OFFSET) / window.innerHeight) * 2 - 1;
+    const normalisedY = (event.clientY / window.innerHeight) * 2 - 1;
     let targetRotationHorizontal = normalisedX;
     let targetRotationVertical = normalisedY;
 
