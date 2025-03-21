@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onNavigate } from "$app/navigation";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import Card from "$lib/card.svelte";
-  import EventList from "$lib/event-list/event-list.svelte";
+  import CommitList from "$lib/event-list/commit-list.svelte";
   import Header from "$lib/header.svelte";
   import HomeDisplay from "$lib/home-display.svelte";
   import Pill from "$lib/pill.svelte";
@@ -15,6 +15,8 @@
   import "../app.css";
   import { pageContext } from "../store";
   import type { LayoutProps } from "./$types";
+  import type { CommitDataQuery } from "./+layout.server";
+  import type { Commit } from "../lib/event-list/event";
 
   let { data, children }: LayoutProps = $props();
 
@@ -26,7 +28,7 @@
   $effect(() => {
     timeString = `${currentTime.getHours().toString().padStart(2, "0")}:${currentTime.getMinutes().toString().padStart(2, "0")}:${currentTime.getSeconds().toString().padStart(2, "0")}`;
 
-    pageLocation = $page.url.pathname;
+    pageLocation = page.url.pathname;
     pageDescription = $pageContext;
   });
 
@@ -45,6 +47,22 @@
       });
     });
   });
+
+  const mapCommits = (commitData: CommitDataQuery): Commit[] => {
+    return commitData.data.viewer.repositories.nodes.flatMap((repo) => {
+      const repoCommits = repo.defaultBranchRef.target.history.edges;
+      return repoCommits.map((commit) => ({
+        repo: repo.name,
+        url: commit.node.url,
+        message: commit.node.message,
+        date: commit.node.committedDate,
+        author: {
+          name: commit.node.author.name,
+          avatar_url: commit.node.author.avatarUrl,
+        },
+      }));
+    });
+  };
 </script>
 
 <main>
@@ -80,9 +98,13 @@
             tooltip="Recent commits I've made to repositories on GitHub."
             hoverEffects
           >
-            {#if data.events}
-              <EventList events={data.events} />
+            <!-- {#await data.commitData}
+              loading
+            {:then commitData} -->
+            {#if data.commitData}
+              <CommitList commits={mapCommits(data.commitData)} />
             {/if}
+            <!-- {/await} -->
           </Card>
           <Card
             cardClassName="w-full h-1/4 md:h-full p-0"

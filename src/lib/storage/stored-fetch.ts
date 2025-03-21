@@ -17,3 +17,18 @@ export async function storedFetch<Type>(key: string, url: string, options?: Requ
 	await fetchMapCache.set(key, jsonData);
 	return jsonData;
 }
+
+export async function storedQuery<Type>(
+	key: string,
+	url: string,
+	query: string,
+	options?: RequestInit,
+): Promise<Type | null> {
+	const fetchOptions = {
+		method: "POST",
+		body: JSON.stringify({ query }),
+		...options,
+	} as RequestInit;
+
+	return await storedFetch(key, url, fetchOptions);
+}

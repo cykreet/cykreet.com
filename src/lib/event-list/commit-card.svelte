@@ -7,7 +7,6 @@
 
   let { commit }: { commit: Commit } = $props();
 
-  const repoName = commit.repo.split("/")[1];
   const prettyTime = prettyMs(new Date().getTime() - new Date(commit.date).getTime(), { compact: true, verbose: true });
   const parsedCommit = parseConventionalCommit(commit.message);
 </script>
@@ -28,7 +27,7 @@
           {parsedCommit.description}
         </span>
       </div>
-      <span class="opacity-50">{repoName}</span>
+      <span class="opacity-50">{commit.repo}</span>
     </div>
     <div class="inline-flex text-sm space-x-2 items-center">
       <img src={commit.author.avatar_url} alt={commit.author.name} class="w-4 h-4 rounded-full" />
