@@ -5,7 +5,6 @@ import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
 import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
 import { MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
 import { _CLIENT_TTL_MS } from "./+page.js";
-import tlds from "tlds";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
 
@@ -23,7 +22,8 @@ export const actions = {
 
 		const validateAddress = await validate({
 			email: fromEmail,
-			additionalTopLevelDomains: tlds,
+			// additionalTopLevelDomains: tlds,
+			validateTypo: false, // todo: deep-email-validator in general is kinda dead, need to replace soon
 			validateSMTP: false, // hardcoded 10s socket timeout on smtp checks not enough for vercel
 		});
 		if (validateAddress.valid === false) {
