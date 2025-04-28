@@ -15,17 +15,11 @@
 
 <div class="flex flex-col space-y-8">
   {#each sortedProjects as project}
-    <div class="flex flex-row space-x-4">
-      <div class="flex flex-col items-center">
-        <span class="relative inline-flex bg-grey-400 rounded-full h-2 w-2 p-0.5 mt-1 stroke-none"></span>
-        <div class="w-0.5 h-full from-grey-400 bg-gradient-to-b to-transparent"></div>
-      </div>
-      <button onclick={() => pageContext.set(undefined)}>
-        <Link href={`/projects/${project.slug ?? project.name.toLowerCase()}`}>
-          <ProjectCard {project}></ProjectCard>
-        </Link>
-      </button>
-    </div>
+    <button onclick={() => pageContext.set(undefined)}>
+      <Link href={`/projects/${project.slug ?? project.name.toLowerCase()}`}>
+        <ProjectCard {project}></ProjectCard>
+      </Link>
+    </button>
   {/each}
   <div class="flex flex-col mx-auto text-sm text-center space-y-2 max-w-60 text-grey-200">
     <IconDots class="w-6 h-6 mx-auto opacity-75" />
