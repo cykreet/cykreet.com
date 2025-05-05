@@ -1,7 +1,7 @@
 <script lang="ts">
   import prettyMs from "pretty-ms";
   import Link from "../link.svelte";
-  import type { Commit } from "./event";
+  import type { Commit } from "./commit";
   import Pill from "../pill.svelte";
   import { parseConventionalCommit } from "./parse-commit";
 

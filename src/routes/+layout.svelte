@@ -2,7 +2,7 @@
   import { onNavigate } from "$app/navigation";
   import { page } from "$app/state";
   import Card from "$lib/card.svelte";
-  import CommitList from "$lib/event-list/commit-list.svelte";
+  import CommitList from "$lib/commit-list/commit-list.svelte";
   import Header from "$lib/header.svelte";
   import HomeDisplay from "$lib/home-display.svelte";
   import Pill from "$lib/pill.svelte";
@@ -16,7 +16,7 @@
   import { pageContext } from "../store";
   import type { LayoutProps } from "./$types";
   import type { CommitDataQuery } from "./+layout.server";
-  import type { Commit } from "../lib/event-list/event";
+  import type { Commit } from "../lib/commit-list/commit";
 
   let { data, children }: LayoutProps = $props();
 
