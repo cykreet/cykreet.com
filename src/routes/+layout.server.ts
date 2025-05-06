@@ -39,7 +39,11 @@ export const load = (async () => {
 		`
   query {
   viewer {
-    repositories(first: 10, orderBy: {field: PUSHED_AT, direction: DESC}) {
+    repositories(
+			first: 10,
+			orderBy: {field: PUSHED_AT, direction: DESC}
+			affiliations: [OWNER, COLLABORATOR]
+		) {
       nodes {
         name
         url
