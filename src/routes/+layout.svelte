@@ -50,17 +50,20 @@
 
   const mapCommits = (commitData: CommitDataQuery): Commit[] => {
     return commitData.data.viewer.repositories.nodes.flatMap((repo) => {
-      const repoCommits = repo.defaultBranchRef.target.history.edges;
-      return repoCommits.map((commit) => ({
-        repo: repo.name,
-        url: commit.node.url,
-        message: commit.node.message,
-        date: commit.node.committedDate,
-        author: {
-          name: commit.node.author.name,
-          avatar_url: commit.node.author.avatarUrl,
-        },
-      }));
+      const branchCommits = repo.refs.nodes;
+      return branchCommits.flatMap((branch) => {
+        const repoCommits = branch.target.history.edges;
+        return repoCommits.map((commit) => ({
+          repo: repo.isFork ? repo.parent!.nameWithOwner : repo.name,
+          url: commit.node.url,
+          message: commit.node.message,
+          date: commit.node.committedDate,
+          author: {
+            name: commit.node.author.name,
+            avatar_url: commit.node.author.avatarUrl,
+          },
+        }));
+      });
     });
   };
 </script>

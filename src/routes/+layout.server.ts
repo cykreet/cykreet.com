@@ -7,24 +7,31 @@ export interface CommitDataQuery {
 		viewer: {
 			repositories: {
 				nodes: {
+					isFork: boolean;
 					name: string;
+					parent?: {
+						nameWithOwner: string;
+					};
 					url: string;
-					defaultBranchRef: {
-						target: {
-							history: {
-								edges: {
-									node: {
-										author: {
-											avatarUrl: string;
-											name: string;
+					refs: {
+						nodes: {
+							name: string;
+							target: {
+								history: {
+									edges: {
+										node: {
+											author: {
+												avatarUrl: string;
+												name: string;
+											};
+											message: string;
+											committedDate: string;
+											url: string;
 										};
-										message: string;
-										committedDate: string;
-										url: string;
-									};
-								}[];
+									}[];
+								};
 							};
-						};
+						}[];
 					};
 				}[];
 			};
@@ -37,29 +44,36 @@ export const load = (async () => {
 		"events",
 		"https://api.github.com/graphql",
 		`
-  query {
+query {
   viewer {
     repositories(
-			first: 10,
-			orderBy: {field: PUSHED_AT, direction: DESC}
-			affiliations: [OWNER, COLLABORATOR]
-		) {
+      first: 10
+      orderBy: {field: PUSHED_AT, direction: DESC}
+      affiliations: [OWNER, COLLABORATOR]
+    ) {
       nodes {
+        isFork
         name
+        parent {
+          nameWithOwner
+        }
         url
-        defaultBranchRef {
-          target {
-            ... on Commit {
-              history(first: 5, author: { id: "${GITHUB_GLOBAL_ID}" }) {
-                edges {
-                  node {
-                    author {
-                      avatarUrl
-                      name
+        refs(first: 100, refPrefix: "refs/heads/") {
+          nodes {
+            name
+            target {
+              ... on Commit {
+                history(first: 5, author: {id: "${GITHUB_GLOBAL_ID}"}) {
+                  edges {
+                    node {
+                      author {
+                        avatarUrl
+                        name
+                      }
+                      message
+                      committedDate
+                      url
                     }
-                    message
-                    committedDate
-                    url
                   }
                 }
               }
