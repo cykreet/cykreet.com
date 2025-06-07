@@ -129,6 +129,31 @@ h3 {
 	width: 100%;
 }
 
+.pincode-input {
+	@apply rounded-md;
+	@apply w-1/5;
+	@apply focus:border-lavender;
+	height: 100%;
+	border: 2px solid var(--color-grey-400);
+	border-bottom: 8px solid var(--color-grey-400);
+	border-color: var(--color-grey-400);
+	outline: none;
+	background-color: var(--color-grey-700);
+	text-align: center;
+	font-family: "Space Mono", monospace;
+}
+
+/* remove numeric input spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
 @media (min-width: 640px) {
 	.container {
 		max-width: 576px;
