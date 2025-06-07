@@ -1,10 +1,11 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
-  import { IconAsteriskSimple, IconExclamationCircle } from "@tabler/icons-svelte";
-  import { ButtonStyle } from "../../lib/button/button";
-  import Button from "../../lib/button/button.svelte";
-  import Input from "../../lib/input/input.svelte";
-  import Link from "../../lib/link.svelte";
+  import IconAsteriskSimple from "virtual:icons/tabler/asterisk-simple";
+  import IconExclamationCircle from "virtual:icons/tabler/exclamation-circle";
+  import { ButtonStyle } from "$lib/button/button";
+  import Button from "$lib/button/button.svelte";
+  import Input from "$lib/input/input.svelte";
+  import Link from "$lib/link.svelte";
   import { pageContext } from "../../store";
   import type { ActionData } from "./$types";
   import prettyMs from "pretty-ms";
@@ -14,10 +15,6 @@
 
   let formLoading = false;
   pageContext.set("let's get in touch");
-
-  const onMessageClick = (event: Event) => {
-    form = undefined;
-  };
 </script>
 
 <svelte:head>
@@ -27,7 +24,7 @@
 
 {#if form?.message}
   <button
-    on:click={onMessageClick}
+    on:click={() => (form = undefined)}
     class="mt-auto select-none animate-slide-bottom bottom-0 left-0 absolute w-full p-2 text-left text-grey-700 bg-lavender"
   >
     <span class="font-extrabold uppercase inline-flex *:z-10 gap-4 items-center align-middle m-0">

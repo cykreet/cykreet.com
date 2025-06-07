@@ -1,8 +1,8 @@
 import { type Actions, fail } from "@sveltejs/kit";
 import { RedisSetCache } from "@sylo-digital/kas";
 import { validate } from "deep-email-validator";
-import { fetchWithRetry } from "../../lib/helpers/fetch-with-retry.js";
-import { redisConnection } from "../../lib/helpers/get-redis-connection.js";
+import { fetchWithRetry } from "$lib/helpers/fetch-with-retry.js";
+import { redisConnection } from "$lib/helpers/get-redis-connection.js";
 import { MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
 import { _CLIENT_TTL_MS } from "./+page.js";
 
@@ -47,6 +47,8 @@ export const actions = {
 			await clientSetCache.add(expireDate.toString());
 		}
 
+		// find the only entry in the set that's a number (the expiration data entry)
+		// if this entry exists and is less than the current time, clear the set
 		const expireEntry = clientKeys.find((key) => !Number.isNaN(Number(key)) && Number(key) < Date.now());
 		if (expireEntry != null) await clientSetCache.clear();
 		if (clientKeys.includes(requestIp)) return fail(429, { message: "Please wait before sending another message" });

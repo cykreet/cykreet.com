@@ -1,25 +1,24 @@
-import {
-	IconBrandSvelte,
-	IconBrandTypescript,
-	IconBrandRust,
-	IconBrandDocker,
-	IconBrandUbuntu,
-	IconBrandGit,
-	IconBrandTailwind,
-	IconCoffee,
-	IconBrandCSharp,
-	IconBrandReact,
-	IconBrandVite,
-	IconBrandNextjs,
-	IconBrandGithub,
-	IconDumpling,
-} from "@tabler/icons-svelte";
+import IconBrandSvelte from "virtual:icons/tabler/brand-svelte";
+import IconBrandTypescript from "virtual:icons/tabler/brand-typescript";
+import IconBrandRust from "virtual:icons/tabler/brand-rust";
+import IconBrandDocker from "virtual:icons/tabler/brand-docker";
+import IconBrandUbuntu from "virtual:icons/tabler/brand-ubuntu";
+import IconBrandGit from "virtual:icons/tabler/brand-git";
+import IconBrandTailwind from "virtual:icons/tabler/brand-tailwind";
+import IconCoffee from "virtual:icons/tabler/coffee";
+import IconBrandCSharp from "virtual:icons/tabler/brand-c-sharp";
+import IconBrandReact from "virtual:icons/tabler/brand-react";
+import IconBrandVite from "virtual:icons/tabler/brand-vite";
+import IconBrandNextjs from "virtual:icons/tabler/brand-nextjs";
+import IconBrandGithub from "virtual:icons/tabler/brand-github";
+import IconDumpling from "virtual:icons/tabler/dumpling";
+import type { Component } from "svelte";
 
 export interface TechnologyMeta {
 	description: string;
 	website: string;
 	colour: string;
-	icon: ConstructorOfATypedSvelteComponent;
+	icon: Component;
 }
 
 export enum Technology {

@@ -8,7 +8,9 @@
   import Pill from "$lib/pill.svelte";
   import SkillList from "$lib/skill-list/skill-list.svelte";
   import TimeIcon from "$lib/time-icon.svelte";
-  import { IconArrowLeft, IconBrandOpenSource, IconGitPullRequest } from "@tabler/icons-svelte";
+  import IconArrowLeft from "virtual:icons/tabler/arrow-left";
+  import IconBrandOpenSource from "virtual:icons/tabler/brand-open-source";
+  import IconGitPullRequest from "virtual:icons/tabler/git-pull-request";
   import { Canvas } from "@threlte/core";
   import clsx from "clsx";
   import { onMount } from "svelte";

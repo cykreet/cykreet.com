@@ -1,6 +1,6 @@
 <script lang="ts">
+  import IconSun from "virtual:icons/tabler/sun-filled";
   import clsx from "clsx";
-  import { IconSun } from "@tabler/icons-svelte";
 
   export let className = "";
 

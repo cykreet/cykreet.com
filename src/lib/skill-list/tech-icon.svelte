@@ -1,6 +1,6 @@
 <script lang="ts">
   import HoverFrame from "$lib/hover/hover-frame.svelte";
-  import { IconExternalLink } from "@tabler/icons-svelte";
+  import IconExternalLink from "virtual:icons/tabler/external-link";
   import clsx from "clsx";
   import Link from "../link.svelte";
   import type { TechnologyMeta } from "./skill";
@@ -15,7 +15,7 @@
   let { name, meta, className }: Props = $props();
   let hovering = $state(false);
 
-  const iconClasses = clsx("h-8 w-8 m-0 mx-auto stroke-1 stroke-grey-200");
+  const iconClasses = clsx("h-8 w-8 m-0 mx-auto *:stroke-1 stroke-grey-200");
   const containerClasses = clsx(
     "flex flex-col space-y-2 p-2 cursor-pointer group rounded-lg border-2 border-dashed border-grey",
     className,
@@ -44,6 +44,6 @@
     </HoverContainer>
   {/snippet}
   <div class={containerClasses} style={`border-color: ${hovering ? meta.colour : ""}`}>
-    <meta.icon class={iconClasses} style={`stroke: ${hovering ? meta.colour : ""}`} />
+    <meta.icon class={iconClasses} style={`color: ${hovering ? meta.colour : ""}`} />
   </div>
 </HoverFrame>

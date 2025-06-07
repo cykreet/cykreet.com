@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { IconBrandGithub, IconDots } from "@tabler/icons-svelte";
+  import IconBrandGithub from "virtual:icons/tabler/brand-github";
+  import IconDots from "virtual:icons/tabler/dots";
   import { pageContext } from "../../store";
   import { _projects } from "./+page";
   import ProjectCard from "$lib/project/project-card.svelte";

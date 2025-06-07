@@ -2,7 +2,7 @@
   import clsx from "clsx";
   import HoverFrame from "./hover/hover-frame.svelte";
   import HoverContainer from "./hover/hover-container.svelte";
-  import type { Snippet } from "svelte";
+  import type { Component, Snippet } from "svelte";
 
   interface Props {
     children: Snippet;
@@ -12,7 +12,7 @@
     cardTitle?: string;
     tooltip?: string;
     hoverEffects?: boolean;
-    Icon?: ConstructorOfATypedSvelteComponent;
+    Icon?: Component;
     // loading?: boolean;
   }
 

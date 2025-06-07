@@ -27,6 +27,7 @@
   const inputName = title?.toLowerCase().replace(" ", "-");
   const inputElement = multiline ? "textarea" : "input";
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const validate = (inputValue: string) => {
     if (maxLength && inputValue.length > maxLength)
       validationError = `${title} must be less than ${maxLength} characters`;

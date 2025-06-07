@@ -1,5 +1,5 @@
 <script>
-  import { IconLoader } from "@tabler/icons-svelte";
+  import IconLoader from "virtual:icons/tabler/loader";
 </script>
 
 <IconLoader class="animate-[spin_2s_ease-in-out_infinite] mx-auto" />
