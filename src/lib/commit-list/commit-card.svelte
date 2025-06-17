@@ -14,7 +14,7 @@
 <Link href={commit.url}>
   <div class="flex flex-col py-2 space-y-1 hover:translate-x-2 transition duration-75 group">
     <div class="inline-flex justify-between">
-      <div class="flex max-w-full space-x-2">
+      <div class="flex max-w-[75%] space-x-2">
         {#if parsedCommit.type}
           <Pill className="!px-2 !p-0 text-grey-300 border-grey-300 {parsedCommit.classes}">
             {parsedCommit.type}
@@ -23,11 +23,11 @@
         {#if parsedCommit.scope}
           <span>{parsedCommit.scope}</span>
         {/if}
-        <span title={parsedCommit.description} class="overflow-x-hidden text-ellipsis whitespace-nowrap max-w-[24rem]">
+        <span title={parsedCommit.description} class="overflow-x-hidden text-ellipsis whitespace-nowrap">
           {parsedCommit.description}
         </span>
       </div>
-      <span class="opacity-50">{commit.repo}</span>
+      <span class="opacity-50 overflow-x-hidden text-ellipsis whitespace-nowrap">{commit.repo}</span>
     </div>
     <div class="inline-flex text-sm space-x-2 items-center">
       <img src={commit.author.avatar_url} alt={commit.author.name} class="w-4 h-4 rounded-full" />
