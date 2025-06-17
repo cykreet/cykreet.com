@@ -4,7 +4,7 @@
   import Card from "$lib/card.svelte";
   import CommitList from "$lib/commit-list/commit-list.svelte";
   import Header from "$lib/header.svelte";
-  import HomeDisplay from "$lib/home-display.svelte";
+  import HomeDisplay from "$lib/observer/observer.svelte";
   import Pill from "$lib/pill.svelte";
   import SkillList from "$lib/skill-list/skill-list.svelte";
   import TimeIcon from "$lib/time-icon.svelte";
@@ -27,6 +27,8 @@
   let currentTime = $state(new Date());
   let timeString = $state("");
 
+  const homeCardClasses = clsx("w-full md:h-1/2 overflow-hidden relative z-0 md:block");
+
   $effect(() => {
     timeString = `${currentTime.getHours().toString().padStart(2, "0")}:${currentTime.getMinutes().toString().padStart(2, "0")}:${currentTime.getSeconds().toString().padStart(2, "0")}`;
 
@@ -34,7 +36,6 @@
     pageDescription = $pageContext;
   });
 
-  const homeCardClasses = clsx("w-full md:h-1/2 overflow-hidden relative z-0 md:block");
   onMount(() => {
     const timeInterval = setInterval(() => (currentTime = new Date()), 1000);
     return () => clearInterval(timeInterval);
@@ -97,7 +98,7 @@
         </Card>
         <div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 md:h-1/2">
           <Card
-            cardClassName="w-full md:h-full"
+            cardClassName="w-1/2 md:h-full"
             Icon={IconGitPullRequest}
             cardTitle="Recent Commits"
             tooltip="Recent commits I've made to repositories on GitHub."
@@ -112,7 +113,7 @@
             <!-- {/await} -->
           </Card>
           <Card
-            cardClassName="w-full h-1/4 md:h-full p-0"
+            cardClassName="w-1/2 h-1/4 md:h-full p-0"
             Icon={IconBrandOpenSource}
             cardTitle="Technologies"
             tooltip="Technologies I've worked with and am currently learning."

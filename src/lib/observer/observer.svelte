@@ -1,13 +1,20 @@
 <script lang="ts">
+  import vertexShader from "./vertex.glsl?raw";
+  import fragmentShader from "./fragment.glsl?raw";
   import { T } from "@threlte/core";
   import { Text3DGeometry, interactivity } from "@threlte/extras";
   import { Spring } from "svelte/motion";
+  import { Vector3 } from "three";
+  import { onMount } from "svelte";
 
   const DAMPING_FACTOR = 0.3;
-  const ROTATION_THRESHOLD = 0.5;
+  const ROTATION_THRESHOLD = 0.2;
+
+  let elapsed = $state(0.0);
 
   interactivity();
   const scale = new Spring(1);
+  const position = new Vector3(2, 0, 6);
   const rotation = new Spring(
     { x: 0, y: 0, z: 0 },
     {
@@ -16,7 +23,16 @@
     },
   );
 
-  function mouseMove(event: MouseEvent) {
+  onMount(() => {
+    const animate = () => {
+      requestAnimationFrame(animate);
+      elapsed = performance.now() * 0.001;
+    };
+
+    animate();
+  });
+
+  const mouseMove = (event: MouseEvent) => {
     // -1 to 1
     const normalisedX = (event.clientX / window.innerWidth) * 2 - 1;
     const normalisedY = (event.clientY / window.innerHeight) * 2 - 1;
@@ -37,22 +53,24 @@
     }
 
     rotation.set({ x: 0, y: targetRotationHorizontal, z: -targetRotationVertical });
-  }
+  };
 </script>
 
 <svelte:window onmousemove={mouseMove} />
 
+<T.AxesHelper />
+
 <T.PerspectiveCamera
   makeDefault
-  position={[20, 40, 0]}
+  position={[20, 10, 0]}
   oncreate={(instance) => {
-    instance.lookAt(0, 1, 0);
+    instance.lookAt(position.x, instance.position.y, position.z);
   }}
 />
 
 <T.AmbientLight intensity={0.2} />
 
-<T.DirectionalLight intensity={1.0} />
+<T.DirectionalLight color="#ffffff" intensity={1.0} />
 
 <T.Group
   position.y={1}
@@ -61,8 +79,13 @@
   on:pointerenter={() => scale.set(1.2)}
   on:pointerleave={() => scale.set(1)}
 >
-  <T.Mesh rotation={[0, Math.PI / 2, 0]} position={[2, 0, 6]}>
-    <Text3DGeometry size={14} rotation={[0, Math.PI / 2, 0]} bevelSize={2} depth={2} text="**" />
-    <T.MeshStandardMaterial color="violet" />
+  <T.Mesh rotation={[0, Math.PI / 2, 0]} position={[position.x, position.y, position.z]}>
+    <Text3DGeometry size={14} rotation={[0, Math.PI / 2, 0]} bevelSize={2} depth={2} text="*" />
+    <T.ShaderMaterial
+      {vertexShader}
+      {fragmentShader}
+      uniforms={{ time: { value: 0.0 } }}
+      uniforms.time.value={elapsed}
+    />
   </T.Mesh>
 </T.Group>
