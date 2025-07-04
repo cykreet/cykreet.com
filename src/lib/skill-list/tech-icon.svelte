@@ -27,7 +27,7 @@
     <!-- 8-bit hexadecimal with 2 additional bits for opacity -->
     <HoverContainer style={`border-color: ${meta.colour}50;`}>
       <div class="flex flex-row gap-2 align-middle items-center font-bold" style={`color: ${meta.colour}`}>
-        <meta.icon class="h-7 w-7 m-0 stroke-1" style={`stroke: ${meta.colour}`} />
+        <meta.icon class="h-7 w-7 m-0 *:stroke-1" style={`stroke: ${meta.colour}`} />
         {name}
       </div>
       <span>{meta.description}</span>

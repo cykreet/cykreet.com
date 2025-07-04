@@ -1,5 +1,5 @@
 import { RedisMapCache } from "@sylo-digital/kas";
-import { redisConnection } from "../helpers/get-redis-connection";
+import { redisConnection } from "../../helpers/get-redis-connection";
 
 const fetchMapCache = new RedisMapCache(redisConnection, "fetch-cache", { defaultExpiry: "4h" });
 

@@ -4,14 +4,12 @@
   import Card from "$lib/card.svelte";
   import CommitList from "$lib/commit-list/commit-list.svelte";
   import Header from "$lib/header.svelte";
-  import HomeDisplay from "$lib/observer/observer.svelte";
   import Pill from "$lib/pill.svelte";
   import SkillList from "$lib/skill-list/skill-list.svelte";
   import TimeIcon from "$lib/time-icon.svelte";
   import IconArrowLeft from "virtual:icons/tabler/arrow-left";
   import IconBrandOpenSource from "virtual:icons/tabler/brand-open-source";
   import IconGitPullRequest from "virtual:icons/tabler/git-pull-request";
-  import { Canvas } from "@threlte/core";
   import clsx from "clsx";
   import { onMount } from "svelte";
   import "../app.css";
@@ -88,11 +86,6 @@
                 </span>
               </h1>
               <h3>hi, i'm jaden. i go by cykreet in most online spaces and i'm currently a student in south africa.</h3>
-            </div>
-            <div class="w-1/2">
-              <Canvas>
-                <HomeDisplay />
-              </Canvas>
             </div>
           </div>
         </Card>

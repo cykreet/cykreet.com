@@ -1,5 +1,5 @@
 import { RedisMapCache } from "@sylo-digital/kas";
-import { redisConnection } from "../../helpers/get-redis-connection";
+import { redisConnection } from "../../../helpers/get-redis-connection";
 import { randomBytes } from "node:crypto";
 
 export const codeHashMapCache = new RedisMapCache<string>(redisConnection, "resume-codes", {
