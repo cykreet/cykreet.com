@@ -89,9 +89,9 @@
             </div>
           </div>
         </Card>
-        <div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 md:h-1/2">
+        <div class="flex flex-col md:flex-row md:space-x-5 md:space-y-0 space-y-5 md:h-1/2 mb-10 md:mb-0">
           <Card
-            cardClassName="w-1/2 md:h-full"
+            cardClassName="md:w-1/2 md:h-full h-[50vh]"
             Icon={IconGitPullRequest}
             cardTitle="Recent Commits"
             tooltip="Recent commits I've made to repositories on GitHub."
@@ -106,7 +106,7 @@
             <!-- {/await} -->
           </Card>
           <Card
-            cardClassName="w-1/2 h-1/4 md:h-full p-0"
+            cardClassName="md:w-1/2 h-1/4 md:h-full p-0"
             Icon={IconBrandOpenSource}
             cardTitle="Technologies"
             tooltip="Technologies I've worked with and am currently learning."
@@ -116,7 +116,10 @@
           </Card>
         </div>
       </div>
-      <Card cardClassName="md:w-4/12 card-gradient md:h-full overflow-hidden" className="flex flex-col space-y-6">
+      <Card
+        cardClassName="md:w-4/12 card-gradient md:h-full overflow-hidden min-h-[50vh]"
+        className="flex flex-col space-y-6"
+      >
         <span class="inline-flex items-center space-x-4 font-medium">
           {#if (pageLocation.match(/\//gi) || []).length > 1}
             <button onclick={() => history?.back()} class="hover:text-white cursor-pointer">

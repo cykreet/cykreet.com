@@ -16,15 +16,16 @@
 
   const hoverFrame = getContext(HoverFrameContext) as HoverFrame;
   const targetContainer = hoverFrame.targetContainer;
+
   $effect(() => {
     if (targetContainer == null) return;
     const containerHeight = containerElement.offsetHeight;
     const containerWidth = containerElement.offsetWidth;
+
     const bottomExcess = Math.max(
       0,
       targetContainer.getBoundingClientRect().top + (containerHeight + HEIGHT_EXCESS_MARGIN) - window.innerHeight,
     );
-
     const rightExcess = Math.max(0, targetContainer.getBoundingClientRect().right + containerWidth - window.innerWidth);
 
     // if the hover container overflows to the right of the page, display it on the left
