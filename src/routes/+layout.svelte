@@ -79,7 +79,7 @@
           <div class="flex w-full justify-between">
             <div class="max-w-lg space-y-4">
               <h1 class="text-lavender">
-                <span>welome to my</span>
+                <span>welcome to my</span>
                 <span class="inline-flex items-center space-x-4">
                   <span>corner</span>
                   <TimeIcon className="w-10 h-10" />
