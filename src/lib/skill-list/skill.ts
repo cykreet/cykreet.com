@@ -12,6 +12,7 @@ import IconBrandVite from "virtual:icons/tabler/brand-vite";
 import IconBrandNextjs from "virtual:icons/tabler/brand-nextjs";
 import IconBrandGithub from "virtual:icons/tabler/brand-github";
 import IconDumpling from "virtual:icons/tabler/dumpling";
+import IconBrandTauri from "virtual:icons/devicon-plain/tauri";
 import type { Component } from "svelte";
 
 export interface TechnologyMeta {
@@ -36,6 +37,7 @@ export enum Technology {
 	Vite = "Vite",
 	Nextjs = "Next.js",
 	GitHub = "GitHub",
+	Tauri = "Tauri",
 }
 
 type SkillsCollection = Record<Technology, TechnologyMeta>;
@@ -130,5 +132,11 @@ export const Skills = {
 		website: "https://vitejs.dev",
 		colour: "#ffcd25",
 		icon: IconBrandVite,
+	},
+	[Technology.Tauri]: {
+		description: "Framework for building native applications using web technologies.",
+		website: "https://tauri.app",
+		colour: "#ffc131",
+		icon: IconBrandTauri,
 	},
 } satisfies SkillsCollection;

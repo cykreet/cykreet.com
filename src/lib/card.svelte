@@ -21,21 +21,21 @@
   let hasScrolled = $state(false);
   let hoveringTop = $state(false);
 
-  const cardClasses = clsx(
-    "card-background border-2 rounded-md relative shadow",
-    hoverEffects && "hoverCard",
-    cardClassName,
-  );
+  const cardClasses = clsx("card-background border-2 rounded-md relative", hoverEffects && "hover-card", cardClassName);
   const classNames = clsx("p-5 overflow-y-auto items-stretch h-full", className);
   const mouseMove = (event: MouseEvent) => {
-    if (!hoverEffects) return;
     const x = event.clientX - cardElement.getBoundingClientRect().left;
     const y = event.clientY - cardElement.getBoundingClientRect().top;
     const withinBoundary = x > 0 && x < cardElement.offsetWidth && y > 0 && y < cardElement.offsetHeight;
-    if (withinBoundary) hoveringTop = event.clientY < cardElement.getBoundingClientRect().top + 100;
+    if (withinBoundary)
+      hoveringTop = event.clientY < cardElement.getBoundingClientRect().top + cardElement.offsetHeight * 0.25;
     else hoveringTop = false;
+  };
 
-    // if (hoveringTop) console.log("hovering top");
+  const globalMouseMove = (event: MouseEvent) => {
+    if (!hoverEffects) return;
+    const x = event.clientX - cardElement.getBoundingClientRect().left;
+    const y = event.clientY - cardElement.getBoundingClientRect().top;
     cardElement.style.setProperty("--x", x.toString());
     cardElement.style.setProperty("--y", y.toString());
   };
@@ -47,9 +47,17 @@
   };
 </script>
 
-<svelte:window on:mousemove={mouseMove} />
+<svelte:window onmousemove={globalMouseMove} />
 
-<div bind:this={cardElement} class={cardClasses} {style}>
+<div
+  bind:this={cardElement}
+  class={cardClasses}
+  {style}
+  onmousemove={mouseMove}
+  role="listbox"
+  aria-label="card"
+  tabindex="0"
+>
   <div class="overflow-hidden flex max-h-full flex-col">
     {#if cardTitle}
       <HoverFrame className="w-fit z-30">
@@ -69,7 +77,7 @@
     {/if}
     {#if hasScrolled && hoveringTop === false}
       <div
-        class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-40% h-full pointer-events-none z-10"
+        class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-30% h-full pointer-events-none z-10"
       ></div>
     {/if}
     <div onscroll={elementScroll} class={classNames}>
@@ -87,12 +95,12 @@
     background-color: hsl(0, 0%, 3.9%);
   }
 
-  .hoverCard::before {
+  .hover-card::before {
     z-index: -1;
     border-radius: inherit;
     background: radial-gradient(
       800px circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-      rgb(232 62 39 / var(--tw-bg-opacity)),
+      rgb(184, 122, 193),
       transparent 50%
     );
     content: "";

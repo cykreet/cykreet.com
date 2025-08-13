@@ -14,9 +14,21 @@ export const _projects: Project[] = Object.values(projectModules).map((module) =
 		technologies[tech] = Skills[tech as keyof typeof Skills];
 	}
 
+	if (module.metadata.website && URL.canParse(module.metadata.website) == false) {
+		throw new Error(`Invalid website for project ${module.metadata.name}: ${module.metadata.website}`);
+	}
+
+	if (module.metadata.github?.startsWith("https")) {
+		throw new Error(
+			`GitHub metadata should only consist of user/repo ${module.metadata.name}: ${module.metadata.github}`,
+		);
+	}
+
 	return {
 		...module.metadata,
 		technologies,
+		website: module.metadata.website ? new URL(module.metadata.website) : undefined,
+		github: module.metadata.github ? new URL(`https://github.com/${module.metadata.github}`) : undefined,
 		component: module.default,
 		publishedDate: parsedDate,
 	};

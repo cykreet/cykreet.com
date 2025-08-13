@@ -7,8 +7,10 @@ export interface Project {
 	// status: string;
 	description: string;
 	component: ConstructorOfATypedSvelteComponent;
-	technologies?: Record<Technology, TechnologyMeta>;
 	publishedDate: Date;
+	technologies?: Record<Technology, TechnologyMeta>;
+	website?: URL;
+	github?: URL;
 }
 
 export interface ProjectFrontmatter {
@@ -17,4 +19,6 @@ export interface ProjectFrontmatter {
 	hero?: string;
 	technologies?: string[];
 	publishedDate: string;
+	website?: string;
+	github?: string;
 }

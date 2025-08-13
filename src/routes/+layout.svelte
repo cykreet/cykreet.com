@@ -117,7 +117,7 @@
         </div>
       </div>
       <Card
-        cardClassName="md:w-4/12 card-gradient md:h-full overflow-hidden min-h-[50vh]"
+        cardClassName="md:w-4/12 card-gradient md:h-full min-h-[50vh] md:min-w-4/12"
         className="flex flex-col space-y-6"
       >
         <span class="inline-flex items-center space-x-4 font-medium">

@@ -1,19 +1,22 @@
 <script lang="ts">
-  // import Link from "../lib/link.svelte";
+  import Link from "../lib/link.svelte";
   import { pageContext } from "../store";
 
   pageContext.set("a little about me");
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>what's here</title>
 </svelte:head>
 
 <div class="flex flex-col space-y-4">
-  <!-- <h3>Full-stack</h3> -->
-  <p>some things are still broken/missing, bear with me :)</p>
-  <!-- <p>
-    When I'm not messing around with programming, I like to write/produce electronic music with
-    <Link decorated href="https://www.ableton.com/en/live/">Ableton Live</Link>.
-  </p> -->
+  <h1 class="text-white">what's here</h1>
+  <p>
+    This is my personal website where I'd like to share my projects and thoughts. Shouldn't have to look too far to my
+    find my <Link decorated href="/projects">projects</Link>, <Link decorated href="/resume">resume</Link>, and <Link
+      decorated
+      href="/contact">contact details</Link
+    >.
+  </p>
+  <p>more soon.</p>
 </div>
