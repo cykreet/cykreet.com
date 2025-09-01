@@ -63,7 +63,7 @@ query {
             name
             target {
               ... on Commit {
-                history(first: 5, author: {id: "${GITHUB_GLOBAL_ID}"}) {
+                history(first: 20, author: {id: "${GITHUB_GLOBAL_ID}"}) {
                   edges {
                     node {
                       author {
