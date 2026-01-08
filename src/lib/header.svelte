@@ -16,7 +16,7 @@
   </div>
   <div class="flex flex-row space-x-10 my-auto font-medium *:my-auto *:no-underline text-grey-100 text-sm">
     <Link href="/projects">Projects</Link>
-    <Link href="/resume">Resume</Link>
+    <!-- <Link href="/resume">Resume</Link> -->
     <Link href="/contact">
       <Button buttonStyle={ButtonStyle.Primary}>Contact</Button>
     </Link>

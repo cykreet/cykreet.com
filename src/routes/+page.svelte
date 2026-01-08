@@ -13,10 +13,7 @@
   <h1 class="text-white">what's here</h1>
   <p>
     This is my personal website where I'd like to share my projects and thoughts. Shouldn't have to look too far to my
-    find my <Link decorated href="/projects">projects</Link>, <Link decorated href="/resume">resume</Link>, and <Link
-      decorated
-      href="/contact">contact details</Link
-    >.
+    find my <Link decorated href="/projects">projects</Link> and <Link decorated href="/contact">contact details</Link>.
   </p>
   <p>more soon.</p>
 </div>
