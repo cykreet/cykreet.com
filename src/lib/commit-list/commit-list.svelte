@@ -2,7 +2,7 @@
   import CommitCard from "./commit-card.svelte";
   import type { Commit } from "./commit";
 
-  const COMMIT_LIMIT = 1000 * 60 * 60 * 24 * 60; // 60 days
+  const COMMIT_LIMIT = 1000 * 60 * 60 * 24 * 180; // 180 days
 
   let { commits }: { commits: Commit[] } = $props();
   const filteredCommits = commits
