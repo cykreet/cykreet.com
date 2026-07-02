@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-	--color-background: #090a0a;
-
 	--color-grey: #202123;
 	--color-grey-100: #9d9ea1;
 	--color-grey-200: #7d7e81;
 	--color-grey-300: #646569;
 	--color-grey-400: #202123;
+	--color-grey-500: #1f2022;
 	--color-grey-700: #101217;
 	--color-grey-900: #0b0b0f;
 
-	--color-lavender: #a793de;
-	--color-lavender-50: #bba7f2;
-	--color-lavender-100: #a793de;
+	--color-border: var(--color-grey-500);
+	--color-background: var(--color-grey-900);
+
+	--color-orange: #fb4c3b;
+	--color-orange-50: #fd762e;
+	--color-orange-100: #fb4c3b;
 
 	--color-salmon: #e83e27;
 	--color-salmon-50: #fc7968;
@@ -58,7 +60,7 @@ body {
 }
 
 ::selection {
-	@apply bg-lavender;
+	@apply bg-orange;
 	@apply text-black;
 }
 
@@ -95,13 +97,13 @@ h3 {
 }
 
 .glass-gradient {
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(158, 24, 248, 0.115) 100%);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(248, 24, 24, 0.115) 100%);
 }
 
 .card-gradient {
-	background: -moz-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
+	background: -moz-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(31, 17, 17) 100%);
 	background: -webkit-linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
-	background: linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(25, 17, 31) 100%);
+	background: linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(31, 17, 17) 100%);
 }
 
 .card-glow {
@@ -110,8 +112,8 @@ h3 {
 		rgba(0, 81, 255, 0) 0%,
 		rgba(0, 153, 255, 0) 36%,
 		rgba(103, 79, 126, 0) 63%,
-		rgba(87, 69, 110, 0.25) 83%,
-		rgb(198, 131, 207) 100%
+		rgba(110, 69, 69, 0.25) 83%,
+		rgb(146, 45, 45) 100%
 	);
 	bottom: 0;
 	flex: none;
@@ -133,7 +135,7 @@ h3 {
 .pincode-input {
 	@apply rounded-md;
 	@apply w-1/5;
-	@apply focus:border-lavender;
+	@apply focus:border-orange;
 	height: 100%;
 	border: 2px solid var(--color-grey-400);
 	border-bottom: 8px solid var(--color-grey-400);
@@ -254,11 +256,11 @@ input[type="number"] {
 	animation-delay: 0.5s;
 	animation-fill-mode: backwards;
 }
-
+/* 
 .name-body {
 	view-transition-name: body;
-}
-
+} */
+/* 
 ::view-transition-old(body) {
 	animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right, 600ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
 }
@@ -266,4 +268,4 @@ input[type="number"] {
 ::view-transition-new(body) {
 	animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) 300ms both slide-from-left, 200ms cubic-bezier(0, 0, 0.2, 1) 300ms both
 		fade-in;
-}
+} */

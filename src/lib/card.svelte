@@ -17,47 +17,40 @@
   }
 
   let { cardClassName, className, children, style, cardTitle, tooltip, hoverEffects, Icon }: Props = $props();
-  let cardElement: HTMLElement;
+  // let cardElement: HTMLElement;
   let hasScrolled = $state(false);
   let hoveringTop = $state(false);
 
-  const cardClasses = clsx("card-background border-2 rounded-md relative", hoverEffects && "hover-card", cardClassName);
+  const cardClasses = clsx("card-background relative", hoverEffects && "hover-card", cardClassName);
   const classNames = clsx("p-5 overflow-y-auto items-stretch h-full", className);
-  const mouseMove = (event: MouseEvent) => {
-    const x = event.clientX - cardElement.getBoundingClientRect().left;
-    const y = event.clientY - cardElement.getBoundingClientRect().top;
-    const withinBoundary = x > 0 && x < cardElement.offsetWidth && y > 0 && y < cardElement.offsetHeight;
-    if (withinBoundary)
-      hoveringTop = event.clientY < cardElement.getBoundingClientRect().top + cardElement.offsetHeight * 0.25;
-    else hoveringTop = false;
-  };
 
-  const globalMouseMove = (event: MouseEvent) => {
-    if (!hoverEffects) return;
-    const x = event.clientX - cardElement.getBoundingClientRect().left;
-    const y = event.clientY - cardElement.getBoundingClientRect().top;
-    cardElement.style.setProperty("--x", x.toString());
-    cardElement.style.setProperty("--y", y.toString());
-  };
+  // const mouseMove = (event: MouseEvent) => {
+  //   const x = event.clientX - cardElement.getBoundingClientRect().left;
+  //   const y = event.clientY - cardElement.getBoundingClientRect().top;
+  //   const withinBoundary = x > 0 && x < cardElement.offsetWidth && y > 0 && y < cardElement.offsetHeight;
+  //   if (withinBoundary)
+  //     hoveringTop = event.clientY < cardElement.getBoundingClientRect().top + cardElement.offsetHeight * 0.25;
+  //   else hoveringTop = false;
+  // };
 
-  const elementScroll = (event: UIEvent) => {
-    if (event.target == null) return;
-    const element = event.target as Element;
-    hasScrolled = element.scrollTop > 0;
-  };
+  // const globalMouseMove = (event: MouseEvent) => {
+  //   if (!hoverEffects) return;
+  //   const x = event.clientX - cardElement.getBoundingClientRect().left;
+  //   const y = event.clientY - cardElement.getBoundingClientRect().top;
+  //   cardElement.style.setProperty("--x", x.toString());
+  //   cardElement.style.setProperty("--y", y.toString());
+  // };
+
+  // const elementScroll = (event: UIEvent) => {
+  //   if (event.target == null) return;
+  //   const element = event.target as Element;
+  //   hasScrolled = element.scrollTop > 0;
+  // };
 </script>
 
-<svelte:window onmousemove={globalMouseMove} />
+<!-- <svelte:window onmousemove={globalMouseMove} /> -->
 
-<div
-  bind:this={cardElement}
-  class={cardClasses}
-  {style}
-  onmousemove={mouseMove}
-  role="listbox"
-  aria-label="card"
-  tabindex="0"
->
+<div class={cardClasses} {style} role="listbox" aria-label="card" tabindex="0">
   <div class="overflow-hidden flex max-h-full flex-col">
     {#if cardTitle}
       <HoverFrame className="w-fit z-30">
@@ -73,24 +66,21 @@
           {cardTitle}
         </span>
       </HoverFrame>
-      <hr class="border-[1.5px]" />
+      <hr class="border-[1.5px] border-border" />
     {/if}
     {#if hasScrolled && hoveringTop === false}
       <div
         class="absolute w-full animate-fade ![animation-delay:0s] ![animation-duration:0.2s] bg-gradient-to-b from-background to-30% h-full pointer-events-none z-10"
       ></div>
     {/if}
-    <div onscroll={elementScroll} class={classNames}>
+    <div class={classNames}>
       {@render children()}
     </div>
   </div>
 </div>
 
+<!-- 
 <style>
-  * {
-    border-color: hsl(0, 0%, 14.9%);
-  }
-
   .card-background {
     background-color: hsl(0, 0%, 3.9%);
   }
@@ -100,7 +90,7 @@
     border-radius: inherit;
     background: radial-gradient(
       800px circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-      rgb(184, 122, 193),
+      rgb(209, 65, 65),
       transparent 50%
     );
     content: "";
@@ -110,4 +100,4 @@
     left: -0.225rem;
     position: absolute;
   }
-</style>
+</style> -->

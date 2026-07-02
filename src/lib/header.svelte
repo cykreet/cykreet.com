@@ -4,10 +4,10 @@
   import Link from "./link.svelte";
 </script>
 
-<div class="flex flex-row justify-between my-5 mb-0">
+<div class="flex flex-row justify-between mb-0 p-4 border-b-2 border-b-border">
   <div class="font-bold text-white my-auto inline-flex space-x-4 items-center">
     <Link
-      className="transition hover:-translate-y-1 rounded-full bg-lavender text-background inline-flex items-center px-2 space-x-3"
+      className="transition hover:-translate-y-1 rounded-full bg-orange text-background inline-flex items-center px-2 space-x-3"
       href="/"
     >
       <span class="rounded-full h-2 w-2 bg-background"></span>

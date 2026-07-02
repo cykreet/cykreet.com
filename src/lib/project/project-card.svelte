@@ -22,7 +22,11 @@
   {/if}
   {#if project.hero}
     <div class="rounded-md border-grey-400/40 w-full p-2 border-2 mb-4">
-      <img class="rounded-md" src={`/assets/projects/${project.name.toLowerCase()}.png`} alt={project.name} />
+      <img
+        class="rounded-md object-cover h-48 w-full"
+        src={`/assets/projects/${project.name.toLowerCase()}.png`}
+        alt={project.name}
+      />
     </div>
   {/if}
   <span class="break-words pr-10">{project.description}</span>

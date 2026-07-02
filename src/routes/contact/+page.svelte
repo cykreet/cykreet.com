@@ -25,7 +25,7 @@
 {#if form?.message}
   <button
     on:click={() => (form = undefined)}
-    class="mt-auto select-none animate-slide-bottom bottom-0 left-0 absolute w-full p-2 text-left text-grey-700 bg-lavender"
+    class="mt-auto select-none animate-slide-bottom bottom-0 left-0 absolute w-full p-2 text-left text-grey-700 bg-orange"
   >
     <span class="font-extrabold uppercase inline-flex *:z-10 gap-4 items-center align-middle m-0">
       <IconAsteriskSimple class="stroke-[3px] w-4 h-4" />

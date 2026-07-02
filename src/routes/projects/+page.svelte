@@ -14,9 +14,9 @@
   <title>Projects</title>
 </svelte:head>
 
-<div class="flex flex-col space-y-8">
+<div class="grid grid-cols-2 gap-4">
   {#each sortedProjects as project}
-    <button onclick={() => pageContext.set(undefined)}>
+    <button class="mb-auto" onclick={() => pageContext.set(undefined)}>
       <Link href={`/projects/${project.slug ?? project.name.toLowerCase()}`}>
         <ProjectCard {project}></ProjectCard>
       </Link>
