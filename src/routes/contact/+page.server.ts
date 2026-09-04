@@ -7,8 +7,9 @@ import { MAILGUN_DOMAIN, MAILGUN_KEY, MAILGUN_TO } from "$env/static/private";
 import { _CLIENT_TTL_MS } from "./+page.js";
 
 const MAILGUN_HOST = "https://api.mailgun.net";
+const CACHE_KEY = "mail-clients";
 
-const clientSetCache = new RedisSetCache<string>(redisConnection, "mail-clients");
+const clientSetCache = new RedisSetCache<string>(redisConnection, CACHE_KEY);
 
 export const actions = {
 	default: async ({ request, getClientAddress }) => {
@@ -39,20 +40,14 @@ export const actions = {
 
 		// https://vercel.com/docs/edge-network/headers/request-headers#x-forwarded-for
 		const requestIp = request.headers.get("x-forwarded-for") ?? getClientAddress();
-		const clientKeys = await clientSetCache.keys();
-		if (clientKeys.length === 0) {
-			// redis sets don't support ttls so we use the first entry in the set
-			// as our global expiration date, once it's expired we clear the entire batch
-			const expireDate = Date.now() + _CLIENT_TTL_MS;
-			await clientSetCache.add(expireDate.toString());
+		// atomic checking and adding of entries
+		const added = await redisConnection.sadd(CACHE_KEY, requestIp);
+		if (added === 0) {
+			return fail(429, { message: "Please wait before sending another message" });
 		}
 
-		// find the only entry in the set that's a number (the expiration data entry)
-		// if this entry exists and is less than the current time, clear the set
-		const expireEntry = clientKeys.find((key) => !Number.isNaN(Number(key)) && Number(key) < Date.now());
-		if (expireEntry != null) await clientSetCache.clear();
-		if (clientKeys.includes(requestIp)) return fail(429, { message: "Please wait before sending another message" });
-		await clientSetCache.add(requestIp);
+		// set expire if entry doesn't already exist
+		await redisConnection.pexpire(CACHE_KEY, _CLIENT_TTL_MS, "NX");
 
 		const encodedAuth = btoa(`api:${MAILGUN_KEY}`);
 		const mailgunUrl = new URL(`${MAILGUN_HOST}/v3/${MAILGUN_DOMAIN}/messages`);
@@ -68,7 +63,7 @@ export const actions = {
 		});
 
 		if (!response.ok) {
-			console.log(`Failed to send email: ${response.status} ${response.statusText}`);
+			console.error(`Failed to send email: ${response.status} ${response.statusText}`);
 			return fail(500, { message: "Failed to send email, please try again" });
 		}
 
