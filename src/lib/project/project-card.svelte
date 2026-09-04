@@ -24,7 +24,7 @@
     <div class="rounded-md border-grey-400/40 w-full p-2 border-2 mb-4">
       <img
         class="rounded-md object-cover h-48 w-full"
-        src={`/assets/projects/${project.name.toLowerCase()}.png`}
+        src={`/assets/projects/${project.name.toLowerCase()}/${project.hero}`}
         alt={project.name}
       />
     </div>

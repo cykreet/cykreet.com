@@ -16,7 +16,7 @@
 
 <div class="grid grid-cols-2 gap-4">
   {#each sortedProjects as project}
-    <button class="mb-auto" onclick={() => pageContext.set(undefined)}>
+    <button class="mb-auto pb-8" onclick={() => pageContext.set(undefined)}>
       <Link href={`/projects/${project.slug ?? project.name.toLowerCase()}`}>
         <ProjectCard {project}></ProjectCard>
       </Link>

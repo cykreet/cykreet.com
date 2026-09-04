@@ -1,0 +1,3 @@
+[install.security]
+scanner = "@socketsecurity/bun-security-scanner"
+

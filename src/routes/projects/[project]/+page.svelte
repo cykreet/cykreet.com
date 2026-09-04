@@ -24,13 +24,22 @@
       {/each}
     </div>
   {/if}
+  <span>{project.description}</span>
   {#if project.hero}
     <div class="rounded-md border-grey-400/40 w-full p-2 border-2">
-      <img class="rounded-md" src={`/assets/projects/${project.name.toLowerCase()}.png`} alt={project.name} />
+      <img
+        class="rounded-md"
+        src={`/assets/projects/${project.name.toLowerCase()}/${project.hero}`}
+        alt={project.name}
+      />
     </div>
   {/if}
-  <span>{project.description}</span>
-  <project.component />
+  <div class="flex flex-col gap-4 markdown">
+    <project.component />
+  </div>
+  <span class="text-sm text-grey-300"
+    >{project.publishedDate?.toLocaleDateString("en-uk", { dateStyle: "medium" })}</span
+  >
   <div class="absolute -right-2 -bottom-2 flex space-x-4">
     {#if project.github}
       <Link href={project.github.toString()}>

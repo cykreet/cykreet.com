@@ -15,12 +15,14 @@
 		"@biomejs/biome": "^1.9.4",
 		"@iconify-json/devicon-plain": "^1.2.37",
 		"@iconify-json/tabler": "^1.2.19",
+		"@socketsecurity/bun-security-scanner": "^1.1.2",
 		"@sveltejs/adapter-vercel": "^5.7.2",
 		"@sveltejs/kit": "^2.21.2",
 		"@sveltejs/vite-plugin-svelte": "^5.1.0",
 		"@tailwindcss/postcss": "^4.1.8",
 		"@tailwindcss/vite": "^4.1.8",
 		"@types/bun": "^1.2.15",
+		"@types/unist": "^3.0.3",
 		"ioredis": "^5.6.1",
 		"mdsvex": "^0.12.6",
 		"postcss": "^8.5.4",
@@ -41,6 +43,7 @@
 		"@sylo-digital/kas": "^2.1.2",
 		"clsx": "^2.1.1",
 		"deep-email-validator": "^0.1.21",
-		"pretty-ms": "^9.2.0"
+		"pretty-ms": "^9.2.0",
+		"unist-util-visit": "^5.1.0"
 	}
 }

@@ -9,7 +9,6 @@ import IconCoffee from "virtual:icons/tabler/coffee";
 import IconBrandCSharp from "virtual:icons/tabler/brand-c-sharp";
 import IconBrandReact from "virtual:icons/tabler/brand-react";
 import IconBrandVite from "virtual:icons/tabler/brand-vite";
-import IconBrandNextjs from "virtual:icons/tabler/brand-nextjs";
 import IconBrandGithub from "virtual:icons/tabler/brand-github";
 import IconDumpling from "virtual:icons/tabler/dumpling";
 import IconBrandTauri from "virtual:icons/devicon-plain/tauri";
@@ -35,7 +34,6 @@ export enum Technology {
 	CSharp = "C-Sharp",
 	React = "React",
 	Vite = "Vite",
-	Nextjs = "Next.js",
 	GitHub = "GitHub",
 	Tauri = "Tauri",
 }
@@ -88,12 +86,6 @@ export const Skills = {
 		website: "https://linux.org",
 		colour: "#ea5515",
 		icon: IconBrandUbuntu,
-	},
-	[Technology.Nextjs]: {
-		description: "A React framework which provides additional features to streamline full-stack web development.",
-		website: "https://nextjs.org",
-		colour: "white",
-		icon: IconBrandNextjs,
 	},
 	[Technology.React]: {
 		description: "JavaScript component-based user interface library for web and native applications.",

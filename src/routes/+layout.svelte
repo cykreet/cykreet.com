@@ -114,7 +114,7 @@
             cardClassName="w-1/2 h-full p-0"
             Icon={IconBrandOpenSource}
             cardTitle="Technologies"
-            tooltip="Technologies "
+            tooltip="Technologies I have enjoyed using for some of my projects."
             hoverEffects
           >
             <SkillList />

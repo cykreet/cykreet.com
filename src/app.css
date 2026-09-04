@@ -60,8 +60,7 @@ body {
 }
 
 ::selection {
-	@apply bg-orange;
-	@apply text-black;
+	@apply bg-orange text-black;
 }
 
 a {
@@ -256,6 +255,38 @@ input[type="number"] {
 	animation-delay: 0.5s;
 	animation-fill-mode: backwards;
 }
+
+.markdown {
+	a {
+		@apply text-orange;
+	}
+
+	img {
+		@apply rounded-md;
+	}
+
+	ol,
+	ul {
+		margin-left: 1em;
+
+		li::marker {
+			@apply text-grey-300;
+		}
+	}
+
+	ul {
+		list-style: disc;
+	}
+
+	ol {
+		list-style: decimal;
+	}
+
+	li {
+		margin-top: 0.5em;
+	}
+}
+
 /* 
 .name-body {
 	view-transition-name: body;
