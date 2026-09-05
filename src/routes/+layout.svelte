@@ -67,9 +67,9 @@
 </script>
 
 <main>
-  <div class="mx-auto w-[50vw] h-full border-l-2 border-r-2 border-border">
+  <div class="mx-auto xl:max-w-[50vw] h-full border-l-2 border-r-2 border-border">
     <Header />
-    <div class="mt-4 flex flex-col w-full gap-5 pb-15">
+    <div class="mt-4 flex flex-col w-full gap-5 pb-15 h-full">
       <div class="flex flex-col h-full *:border-b-2 *:border-b-border">
         <Card cardClassName="min-h-[50vh]" className="flex flex-col space-y-6">
           <span class="inline-flex items-center space-x-4 font-medium">
@@ -94,9 +94,11 @@
             {@render children()}
           </div>
         </Card>
-        <div class="flex flex-row mb-10 md:mb-0 h-[35vh]">
+        <!-- <div class="flex flex-col md:flex-row mb-10 md:mb-0 h-[35vh]"> -->
+        <!-- <div class="flex flex-col md:flex-row mb-10 md:mb-0 md:h-[35vh]"> -->
+        <div class="flex flex-col md:flex-row mb-10 md:mb-0 md:h-[35vh]">
           <Card
-            cardClassName="md:w-1/2 h-full border-r-2 border-border"
+            cardClassName="md:w-1/2 h-[35vh] md:h-full border-r-2 border-border"
             Icon={IconGitPullRequest}
             cardTitle="Recent Commits"
             tooltip="Recent commits I've made to repositories on GitHub."
@@ -111,7 +113,7 @@
             <!-- {/await} -->
           </Card>
           <Card
-            cardClassName="w-1/2 h-full p-0"
+            cardClassName="md:w-1/2 h-[35vh] md:h-full p-0"
             Icon={IconBrandOpenSource}
             cardTitle="Technologies"
             tooltip="Technologies I have enjoyed using for some of my projects."

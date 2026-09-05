@@ -25,6 +25,7 @@
 body {
 	@apply text-grey-100;
 	@apply bg-background;
+
 	font-family: "Space Grotesk", sans-serif;
 	font-optical-sizing: auto;
 	overflow-y: overlay;
