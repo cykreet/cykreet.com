@@ -12,7 +12,7 @@ This project is a lot of things and has been responsible for a lot of my growth 
 
 ### rewrite
 
-After I had made some contributions on both the backend and frontend of things, we started brainstorming a major rewrite of the project through 2021-2022, which would involve moving a *lot* of the infrastructure and backend to Rust (spearheaded by the amazing [sylver](https://sylver.me)). Finally, in early 2022, we started rolling out "vx" (we skipped v9 because referring to it as "vx" was cooler), which featured a complete overhaul and a ton of focus on the scripting experience, involving a LISP-like scripting language called pella (which is related to [pellagraph](/projects/pellagraph), a node-based editor that allows for visual programming).
+After I had made some contributions on both the backend and frontend of things, we started brainstorming a major rewrite of the project through 2021-2022, which would involve moving a *lot* of the infrastructure and backend to Rust (spearheaded by the amazing [sylver](https://sylver.me)). Finally, in early 2022, we started rolling out "vx" (we skipped v9 because referring to it as "vx" was cooler), which featured a complete overhaul and a ton of focus on the scripting experience, involving a scripting language called pella (which is related to [pellagraph](/projects/pellagraph), a node-based editor that allows for visual programming).
 
 I was involved with a lot of the design work (designed the new logo), and also contributed a lot of feature additions, testing and bug fixing across the API, frontend, and backend.
 
