@@ -3,7 +3,7 @@ name: cykreet.com
 description: My personal website for housing projects and thoughts, currently hosted on Vercel.
 technologies: ["SvelteKit"]
 publishedDate: "2022-07-19"
-github: "cykreet/alligator"
+github: "cykreet/cykreet.com"
 ---
 
 My intentions for a personal site have never been super clear to me, other than having some sort of fingerprint I can point to. Mostly, this site has been a playground for me to experiment with some web stuff, like svelte, and a place to host projects.
