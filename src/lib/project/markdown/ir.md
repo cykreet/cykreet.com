@@ -1,12 +1,12 @@
 ---
 name: ir
 description: Work in progress Odin CLAP plugin with bindings for Rust slint components.
-technologies: ["Rust", "Docker"]
+technologies: ["Rust"]
 publishedDate: "2026-09-03"
 github: "cykreet/ir"
 ---
 
-Odin's been of particular interest to me recently as someone who's been getting more and more into lower level and "performance-oriented" programming. I appreciate the thought behind a lot the language semantics (which is to say I appreciate a lot the decisions behind jai that inspired it). I think the spectrum of low level languages is pretty exciting at the moment, though I'm still learning and exploring. I've also enjoyed languages like Rust quite a bit, so being able to possibly append Odin (and possibly some others like Zig) to my toolbelt is something I'm excited about.
+Odin's been of particular interest to me recently as someone who's been getting more and more into lower level and "performance-oriented" programming. I appreciate the thought behind a lot the language semantics (which is to say I appreciate a lot the decisions behind jai that inspired it). I think the spectrum of low level languages is pretty exciting at the moment, though I'm still learning and exploring. I've also enjoyed languages like Rust quite a bit, so being able to possibly append Odin to my toolbelt is something I'm excited about.
 
 I came across this [convolution plugin that does some cool stuff with impulse responses](https://viiri-audio.com) after browsing [slint's](https://slint.dev) project showcase and it inspired me to try slint, while also using Odin, to throw together a plugin of my own I could possibly use in my own projects. Before getting to actually write the plugin part, I've had to address a few hiccups:
 
