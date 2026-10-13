@@ -22,7 +22,6 @@ export function wrapImages() {
 
 				parent.children.splice(index, 1, wrapper);
 			} else if (node.tagName === "a") {
-				console.log(node);
 				const anchor = {
 					type: "element",
 					tagName: "a",

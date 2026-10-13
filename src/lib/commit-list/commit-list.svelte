@@ -14,7 +14,7 @@
   {#each filteredCommits as commit}
     <CommitCard {commit} />
     {#if filteredCommits.indexOf(commit) + 1 !== filteredCommits.length}
-      <hr class="my-1/2 m-0 border-grey-400" />
+      <hr class="my-1/2 m-0 border-border" />
     {/if}
   {/each}
 </div>

@@ -14,9 +14,7 @@
 </script>
 
 <div class="flex flex-col space-y-4">
-  <div>
-    <h3>{project.name}</h3>
-  </div>
+  <h1>{project.name}</h1>
   {#if technologies && technologies.length > 0}
     <div class="flex flex-row space-x-4 space-y-4 max-w-full overflow-x-auto">
       {#each technologies as { name, meta }}

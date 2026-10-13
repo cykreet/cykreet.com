@@ -53,13 +53,13 @@
 <div class={cardClasses} {style} role="listbox" aria-label="card" tabindex="0">
   <div class="overflow-hidden flex max-h-full flex-col">
     {#if cardTitle}
-      <HoverFrame className="w-fit z-30">
+      <HoverFrame className="w-fit">
         {#snippet hoverContainer()}
           <HoverContainer>
             {tooltip}
           </HoverContainer>
         {/snippet}
-        <span class="px-5 text-sm text-grey-200 font-medium z-20 select-none align inline-flex gap-2 mt-1 items-center">
+        <span class="px-5 text-sm text-grey-200 font-medium select-none align inline-flex gap-2 mt-1 items-center">
           {#if Icon != null}
             <Icon class="w-4 h-4" />
           {/if}

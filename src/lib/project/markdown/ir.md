@@ -16,7 +16,7 @@ I came across this [convolution plugin that does some cool stuff with impulse re
 
 These aren't absolute blockers and I've taken care of the most important ones, so I'll be looking into actually doing some impulse response convolution in the near future.
 
-### odin clap bindings
+## odin clap bindings
 
 Definitely not the first of its kind, but as someone who has been getting more into Odin and audio programming, I wanted to make a simple wrapper for the CLAP audio library, which automatically runs binding generation every week using [`odin-c-bindgen`](https://github.com/karl-zylinski/odin-c-bindgen).
 

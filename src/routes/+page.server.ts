@@ -1,6 +1,6 @@
 import { GITHUB_ACCESS_TOKEN, GITHUB_GLOBAL_ID } from "$env/static/private";
 import { storedQuery } from "$lib/storage/stored-fetch";
-import type { LayoutServerLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 
 export interface CommitDataQuery {
 	data: {
@@ -94,7 +94,7 @@ query {
 	);
 
 	return { commitData: await commitData };
-}) satisfies LayoutServerLoad;
+}) satisfies PageServerLoad;
 
 // export const prerender = true;
 export const ssr = true;

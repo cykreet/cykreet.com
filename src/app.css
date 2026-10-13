@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Germania+One&family=Pliant&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -10,8 +11,8 @@
 	--color-grey-700: #101217;
 	--color-grey-900: #0b0b0f;
 
-	--color-border: var(--color-grey-500);
-	--color-background: var(--color-grey-900);
+	--color-border: var(--color-grey-200);
+	--color-background: #fdf6ea;
 
 	--color-orange: #fb4c3b;
 	--color-orange-50: #fd762e;
@@ -23,10 +24,11 @@
 }
 
 body {
-	@apply text-grey-100;
-	@apply bg-background;
+	@apply text-grey-900;
+	@apply bg-white;
 
-	font-family: "Space Grotesk", sans-serif;
+	background: var(--color-background);
+	font-family: "Pliant", sans-serif;
 	font-optical-sizing: auto;
 	overflow-y: overlay;
 	overflow-x: hidden;
@@ -51,12 +53,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-	@apply bg-grey-400;
+	@apply bg-border;
 	border-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
-	background-color: rgba(0, 0, 0, 0);
 	border-color: transparent;
 }
 
@@ -76,23 +77,26 @@ h1,
 h2,
 h3 {
 	@apply tracking-tight;
+
+	font-family: "Germania One", sans-serif;
+}
+
+.font-heading {
+	font-family: "Germania One", sans-serif;
 }
 
 h1 {
-	/* @apply text-white; */
 	@apply font-black;
 	@apply text-6xl;
 }
 
 h2 {
-	@apply text-white;
-	@apply text-4xl;
+	@apply text-5xl;
 	@apply font-bold;
 }
 
 h3 {
-	@apply text-white;
-	@apply text-2xl;
+	@apply text-4xl;
 	@apply font-medium;
 }
 
@@ -106,27 +110,6 @@ h3 {
 	background: linear-gradient(0deg, rgba(60, 60, 63, 0) 84%, rgb(31, 17, 17) 100%);
 }
 
-.card-glow {
-	background: radial-gradient(
-		80% 75.9245283018868% at 40% 40.5%,
-		rgba(0, 81, 255, 0) 0%,
-		rgba(0, 153, 255, 0) 36%,
-		rgba(103, 79, 126, 0) 63%,
-		rgba(110, 69, 69, 0.25) 83%,
-		rgb(146, 45, 45) 100%
-	);
-	bottom: 0;
-	flex: none;
-	height: 500px;
-	left: 0;
-	mask: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 100%) add;
-	overflow: hidden;
-	pointer-events: none;
-	position: absolute;
-	right: 0;
-	z-index: 2;
-}
-
 .container {
 	padding: 0 1rem;
 	width: 100%;
@@ -136,6 +119,7 @@ h3 {
 	@apply rounded-md;
 	@apply w-1/5;
 	@apply focus:border-orange;
+
 	height: 100%;
 	border: 2px solid var(--color-grey-400);
 	border-bottom: 8px solid var(--color-grey-400);
@@ -260,6 +244,11 @@ input[type="number"] {
 .markdown {
 	a {
 		@apply text-orange;
+	}
+
+	a:hover {
+		font-family: "Germania One", sans-serif;
+		font-size: 1.14em;
 	}
 
 	img {

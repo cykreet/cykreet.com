@@ -18,7 +18,7 @@
   let validationError = $state("");
   let inputClassNames = $derived(
     clsx(
-      "w-full bg-transparent outline-none transition-[margin-bottom] text-white text-wrap border-grey-400 align-text-top border-2 p-2 max-w-full rounded-md text focus:border-orange",
+      "w-full bg-transparent outline-none transition-[margin-bottom] text-wrap border-border align-text-top border-2 p-2 max-w-full rounded-md text focus:border-orange",
       inputClassName,
       validationError && "!mb-2",
     ),
@@ -56,9 +56,11 @@
 
 <div class="flex flex-col space-y-1">
   <div class="flex justify-between items-center">
-    <span class={validationError ? "text-orange" : "text-white"}>{title}</span>
+    <span class={validationError ? "text-orange" : "text-inherit"}>{title}</span>
     {#if maxLength}
-      <Pill decorated className="text-xs border-none bg-orange/50">{inputText.length} / {maxLength}</Pill>
+      <Pill decorated className="text-xs border-none bg-grey-900"
+        >{inputText.length} <strong>/</strong> {maxLength}</Pill
+      >
     {/if}
   </div>
   <svelte:element

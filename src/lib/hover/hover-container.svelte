@@ -10,7 +10,7 @@
   let { className, children, style }: { className?: string; children: Snippet; style?: string } = $props();
   let containerElement: HTMLElement;
   const classNames = clsx(
-    "fixed z-20 p-4 flex flex-col space-y-3 min-w-72 bg-background text-sm border-2 border-b-4 border-grey animate-slide-bottom max-w-80 rounded-md shadow-md",
+    "fixed z-20 p-4 flex text-background flex-col space-y-3 min-w-72 bg-grey-900 text-sm border-2 border-b-4 border-grey animate-slide-bottom max-w-80 rounded-md shadow-md",
     className,
   );
 

@@ -14,9 +14,9 @@
 <div class="rounded-md text-left">
   <h3 class="text-base">{project.name}</h3>
   {#if technologies && technologies.length > 0}
-    <div class="flex flex-row space-x-4 mt-2 mb-3">
+    <div class="flex flex-wrap gap-2 mt-2 mb-3">
       {#each technologies as { name, meta }}
-        <TechIcon {name} {meta} className="h-10 w-24" />
+        <TechIcon {name} {meta} className="h-10 w-18" />
       {/each}
     </div>
   {/if}
