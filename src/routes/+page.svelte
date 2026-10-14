@@ -2,8 +2,8 @@
   import Card from "$lib/card.svelte";
   import CommitList from "$lib/commit-list/commit-list.svelte";
   import Link from "$lib/link.svelte";
-  import SkillList from "$lib/skill-list/skill-list.svelte";
-  import IconBrandOpenSource from "virtual:icons/tabler/brand-open-source";
+  // import SkillList from "$lib/skill-list/skill-list.svelte";
+  // import IconBrandOpenSource from "virtual:icons/tabler/brand-open-source";
   import IconGitPullRequest from "virtual:icons/tabler/git-pull-request";
   import { pageContext } from "../store";
   import type { Commit } from "$lib/commit-list/commit";
@@ -65,7 +65,7 @@
       {/if}
       <!-- {/await} -->
     </Card>
-    <Card
+    <!-- <Card
       cardClassName="md:w-1/2 h-[35vh] md:h-full p-0"
       Icon={IconBrandOpenSource}
       cardTitle="Technologies"
@@ -73,6 +73,6 @@
       hoverEffects
     >
       <SkillList />
-    </Card>
+    </Card> -->
   </div>
 </div>

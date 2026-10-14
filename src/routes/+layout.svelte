@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Card from "$lib/card.svelte";
+  import HoverContainer from "$lib/hover/hover-container.svelte";
+  import HoverFrame from "$lib/hover/hover-frame.svelte";
   import Link from "$lib/link.svelte";
   import IconMail from "virtual:icons/tabler/mail-filled";
+  import IconEye from "virtual:icons/tabler/mountain-filled";
   import IconRosettte from "virtual:icons/tabler/rosette-filled";
   import "../app.css";
   import type { LayoutProps } from "./$types";
-  import HoverContainer from "$lib/hover/hover-container.svelte";
-  import HoverFrame from "$lib/hover/hover-frame.svelte";
 
   let { children }: LayoutProps = $props();
 </script>
@@ -16,7 +16,7 @@
     <div class="flex flex-row gap-8 sticky top-0 z-10">
       <Link href="/" className="bg-orange flex">
         <div class="flex justify-center items-center h-15 w-15">
-          <h2>C</h2>
+          <IconEye class="h-8 w-8" />
         </div>
       </Link>
       <HoverFrame className="w-fit">
@@ -40,11 +40,11 @@
 
   <main class="min-w-0 flex-1">
     <div class="h-full">
-      <Card cardClassName="min-h-[100vh]" className="flex flex-col space-y-6">
-        <div class="h-full mx-auto max-w-200 mt-10">
+      <div class="min-h-[100vh] flex flex-col space-y-6">
+        <div class="h-full md:mx-auto md:max-w-180 px-4 mt-20 mb-20">
           {@render children()}
         </div>
-      </Card>
+      </div>
       <div class="bg-orange select-none text-background items-end flex h-50 p-4">
         <h2>cykreet.com</h2>
       </div>

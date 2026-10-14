@@ -38,7 +38,7 @@
   <span class="text-sm text-grey-300"
     >{project.publishedDate?.toLocaleDateString("en-uk", { dateStyle: "medium" })}</span
   >
-  <div class="absolute -right-2 -bottom-2 flex space-x-4">
+  <div class="flex flex-row gap-4">
     {#if project.github}
       <Link href={project.github.toString()}>
         <Button className="flex flex-row gap-2 items-center" buttonStyle={ButtonStyle.Glass}>

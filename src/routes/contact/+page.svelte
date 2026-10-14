@@ -34,8 +34,8 @@
   </button>
 {/if}
 
-<div class="flex flex-row gap-10 justify-between">
-  <div class="w-1/2">
+<div class="flex flex-col md:flex-row gap-10 md:justify-between">
+  <div class="md:w-1/2">
     <h1>contact</h1>
     <p>
       Use this form to send me a message to my inbox, this is the preferred method of professional communication, I'll
@@ -45,7 +45,7 @@
       >.
     </p>
   </div>
-  <div class="flex w-1/2 flex-col space-y-5">
+  <div class="flex md:w-1/2 flex-col space-y-5">
     <form
       method="POST"
       use:enhance={() => {
